@@ -1,3 +1,26 @@
-<p>
-  dashboard works!
-</p>
+<div class="container"
+     fxLayout="row"
+     fxLayout.sm="column"
+     fxLayoutGap="0.5%"
+     fxLayoutWrap>
+  <div fxFlex="25%" *ngFor="let tile of tiles">
+    <mat-card [style.background]="tile.color" class="dashboard-card">
+      <mat-card-content>
+        <div class="container" fxLayout="row" fxLayoutWrap>
+          <div fxFlex=25%>
+            <mat-icon mat-list-icon class=""> {{ tile.icon }}</mat-icon>
+          </div>
+          <div fxFlex=75% class="text-right">
+            <section class="mat-typography">
+              <h1>{{ tile.number }}</h1>
+              <h2>{{ tile.title }}</h2>
+            </section>
+          </div>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button [routerLink]="this.link">Details</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

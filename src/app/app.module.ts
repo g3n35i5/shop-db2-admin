@@ -67,7 +67,9 @@ const appRoutes: Routes = [
     MaterialModule,
     LayoutModule,
     FormsModule,
+    LayoutModule,
     ReactiveFormsModule,
+    FlexLayoutModule,
     RouterModule.forRoot(appRoutes),
     JwtModule.forRoot({
       config: {
