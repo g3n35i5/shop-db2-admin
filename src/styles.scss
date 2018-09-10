@@ -1,1 +1,10 @@
+/** Angular material theme. */
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+/** Material design icons. */
+@import "~material-design-icons/iconfont/material-icons.css";
+/** Roboto font. */
+@import '~roboto-fontface/css/roboto/roboto-fontface.css';
+
+body {
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+}
