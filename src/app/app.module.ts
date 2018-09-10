@@ -26,6 +26,12 @@ import { AuthService } from './services/auth/auth.service';
 import { DataService } from './services/data/data.service';
 import { SnackbarService } from './services/snackbar/snackbar.service';
 
+/** Returns the token from the local storage. Required for the JWT tool. */
+export function tokenGetter() {
+  return localStorage.getItem('token');
+}
+
+/** Contains all app routes. */
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'offline', component: OfflineComponent },
@@ -63,7 +69,11 @@ const appRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot(appRoutes),
-    JwtModule.forRoot({}),
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter
+      }
+    }),
     AvatarModule.forRoot(),
   ],
   providers: [
