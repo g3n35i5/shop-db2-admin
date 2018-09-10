@@ -7,6 +7,7 @@ import {
   MatCheckboxModule,
   MatChipsModule,
   MatDatepickerModule,
+  MatFormFieldModule,
   MatDialogModule,
   MatDividerModule,
   MatExpansionModule,
@@ -34,12 +35,6 @@ import {
   MatTooltipModule,
 } from '@angular/material';
 
-/**
- *
- *
- * @export
- * @class MaterialModule
- */
 @NgModule({
   imports: [
     MatAutocompleteModule,
@@ -49,6 +44,7 @@ import {
     MatCheckboxModule,
     MatChipsModule,
     MatDatepickerModule,
+    MatFormFieldModule,
     MatDialogModule,
     MatDividerModule,
     MatExpansionModule,
@@ -83,6 +79,7 @@ import {
     MatCheckboxModule,
     MatChipsModule,
     MatDatepickerModule,
+    MatFormFieldModule,
     MatDialogModule,
     MatDividerModule,
     MatExpansionModule,
