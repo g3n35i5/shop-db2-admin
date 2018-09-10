@@ -1,0 +1,49 @@
+.active-route {
+  background: #EEEEEE;
+}
+
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  width: 200px;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+}
+
+.mat-list-icon {
+  color: #424242;
+}
+
+.mat-list-item {
+  color: #424242;
+}
+
+.content {
+  margin: 1rem;
+}
+
+.userinfo {
+  margin-top: 0;
+  padding-top: 1rem;
+  height: 150px;
+  background-image: url('/assets/background.png') !important;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.username {
+  margin: auto;
+}
+
+.avatar {
+  margin: auto;
+}
+
+.mat-drawer-container {
+  background-color: #fff !important;
+}

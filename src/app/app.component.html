@@ -1,1 +1,49 @@
-Hello World!
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav
+    *ngIf="(isLoggedIn$ | async)"
+    #drawer
+    class="sidenav"
+    fixedInViewport="true"
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="!(isHandset$ | async)"
+    [class.mat-elevation-z8]="true">
+    <mat-toolbar color="primary" class="userinfo">
+      <mat-toolbar-row>
+        <avatar class="avatar" [size]="80" [email]="email" [displayType]="'circle'"></avatar>
+      </mat-toolbar-row>
+      <mat-toolbar-row>
+        <h2 class="mat-h2 username">{{name}}</h2>
+      </mat-toolbar-row>
+    </mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item *ngFor="let item of elements" [routerLink]="[item.link]" [routerLinkActive]="['active-route']">
+        <mat-icon mat-list-icon>{{ item.icon }}</mat-icon>
+        <h4 mat-line>{{ item.title }}</h4>
+      </a>
+    </mat-nav-list>
+    <mat-divider></mat-divider>
+    <mat-nav-list>
+      <a mat-list-item (click)="logout()">
+        <mat-icon mat-list-icon>exit_to_app</mat-icon>
+        <h4 mat-line>Logout</h4>
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="(isLoggedIn$ | async) && (isHandset$ | async)">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span>shop.db admin</span>
+    </mat-toolbar>
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
