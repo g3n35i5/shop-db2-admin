@@ -9,4 +9,25 @@ body {
   font-family: Roboto, Helvetica, Arial, sans-serif;
   margin: 0;
 }
+
+.full-width-input {
+  width: 100%;
+}
+
+.error-snackbar {
+  background: #C62828;
+  color: #ffffff;
+  text-align: center;
+}
+
+.info-snackbar {
+  background: #00B0FF;
+  color: #212121;
+  text-align: center;
+}
+
+.success-snackbar {
+  background: #4CAF50;
+  color: #212121;
+  text-align: center;
 }
