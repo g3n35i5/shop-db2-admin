@@ -7,6 +7,8 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { AvatarModule } from 'ng2-avatar';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { LayoutModule } from '@angular/cdk/layout';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -57,6 +59,9 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     HttpClientModule,
     MaterialModule,
+    LayoutModule,
+    FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(appRoutes),
     JwtModule.forRoot({}),
     AvatarModule.forRoot(),
