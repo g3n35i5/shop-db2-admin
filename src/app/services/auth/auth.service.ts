@@ -1,9 +1,59 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
+import { DataService } from '../data/data.service';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class AuthService {
+  constructor(
+    private router: Router,
+    private dataService: DataService,
+    private jwtHelper: JwtHelperService
+  ) {}
 
-  constructor() { }
+  private loggedIn = new BehaviorSubject<boolean>(this.tokenValid());
+
+  get isLoggedIn() {
+    return this.loggedIn.asObservable();
+  }
+
+  tokenValid() {
+    let token = localStorage.getItem('token');
+    if (typeof token === 'undefined' || token === null) { return false; }
+    let decoded = this.jwtHelper.decodeToken(token);
+    if (typeof decoded === 'undefined' || decoded === null) { return false; }
+    let isExpired = this.jwtHelper.isTokenExpired(token);
+    return !isExpired;
+  }
+
+  login(user){
+    if (user.identifier !== '' && user.password !== '' ) {
+      this.dataService.login(user.identifier, user.password)
+      .subscribe(result => {
+        let token = result['token'];
+        if (typeof token === 'undefined' || token === null) {
+          this.loggedIn.next(false);
+          this.router.navigate(['/login']);
+        } else {
+          localStorage.setItem('token', token);
+          let currentUser = this.jwtHelper.decodeToken(token).user;
+          localStorage.setItem('currentUser', JSON.stringify(currentUser));
+        }
+        if (this.tokenValid()) {
+          this.loggedIn.next(true);
+          this.router.navigate(['/']);
+        } else {
+          this.loggedIn.next(false);
+          this.router.navigate(['/login']);
+        }
+      })
+    }
+  }
+
+  logout() {
+    localStorage.removeItem('token');
+    this.loggedIn.next(false);
+    this.router.navigate(['/login']);
+  }
 }
