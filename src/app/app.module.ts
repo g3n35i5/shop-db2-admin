@@ -10,6 +10,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LayoutModule } from '@angular/cdk/layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { CustomCurrency } from './filters';
+
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
@@ -49,6 +51,7 @@ const appRoutes: Routes = [
 
 @NgModule({
   declarations: [
+    CustomCurrency,
     AppComponent,
     DashboardComponent,
     LoginComponent,
