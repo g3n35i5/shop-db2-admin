@@ -86,7 +86,7 @@ export class DataService {
     /** Check if the backend is available. If this is not the case,
         the HTTP_INTERCEPTOR will redirect you to the offline page
         and cancel the request. */
-    this.http.get('status', {});
+    this.http.get('/api/');
     /** Get the access token from the local storage. */
     let token = localStorage.getItem('token');
     /** If the token does not exist, replace it with an empty string. */
