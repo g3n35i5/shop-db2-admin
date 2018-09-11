@@ -14,7 +14,7 @@ import { forkJoin } from 'rxjs';
 export class UsersComponent implements OnInit {
 
   /** Define all needed variables. */
-  public loading: boolean = true; // Set the initial loading state to true.
+  public loading: boolean;
   public showTable: boolean;
   public users;
   public dataSource;
@@ -54,6 +54,7 @@ export class UsersComponent implements OnInit {
 
   /** Load all nescessary data from the backend. */
   loadData() {
+    this.loading = true;
     let users = this.dataService.getUsers();
     forkJoin([users]).subscribe(results => {
       this.users = results[0]['users'];
