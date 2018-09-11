@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import * as moment from 'moment';
+import * as moment from 'moment-timezone';
 
 @Pipe({ name: 'customCurrency' })
 export class CustomCurrency implements PipeTransform {
@@ -8,5 +8,16 @@ export class CustomCurrency implements PipeTransform {
       return null;
     }
     return input / 100;
+  }
+}
+
+@Pipe({ name: 'customTimestamp' })
+export class CustomTimestamp implements PipeTransform {
+  transform(input: string, format='DD.MM.YYYY HH:mm:ss'): string {
+    if (typeof(input) === "undefined" || input === null) {
+      return 'unknown'
+    }
+    let date = moment(new Date(input));
+    return date.tz('Europe/Berlin').format(format);
   }
 }

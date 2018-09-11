@@ -11,6 +11,7 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { CustomCurrency } from './filters';
+import { CustomTimestamp } from './filters';
 
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -53,6 +54,7 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     CustomCurrency,
+    CustomTimestamp,
     AppComponent,
     DashboardComponent,
     LoginComponent,
