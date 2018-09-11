@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-pagenotfound',
   templateUrl: './pagenotfound.component.html',
@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PagenotfoundComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit() {
   }
 
+  /** Return to the root url. */
+  return () {
+    this.router.navigate(['/']);
+  }
 }
