@@ -27,6 +27,7 @@ import { AuthGuard } from './services/auth/auth.guard';
 import { AuthService } from './services/auth/auth.service';
 import { DataService } from './services/data/data.service';
 import { SnackbarService } from './services/snackbar/snackbar.service';
+import { EditUserComponent } from './users/edit-user/edit-user.component';
 
 /** Returns the token from the local storage. Required for the JWT tool. */
 export function tokenGetter() {
@@ -61,7 +62,8 @@ const appRoutes: Routes = [
     DepositsComponent,
     VerificationsComponent,
     PagenotfoundComponent,
-    LoadingComponent
+    LoadingComponent,
+    EditUserComponent
   ],
   imports: [
     BrowserModule,
@@ -92,6 +94,9 @@ const appRoutes: Routes = [
       multi: true,
     }
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    EditUserComponent
+  ]
 })
 export class AppModule { }

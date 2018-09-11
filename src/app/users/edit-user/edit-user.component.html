@@ -1,0 +1,74 @@
+<mat-spinner *ngIf="loading"style="margin:0 auto;" mode="indeterminate"></mat-spinner>
+<div *ngIf="!loading" class="edit-user-content">
+  <h1 mat-dialog-title>Edit user</h1>
+  <form [formGroup]="form" (ngSubmit)="submitForm()">
+    <!-- These fields are required to intercept a possible autofill from
+         the browser. Otherwise the email or username field and password
+         would be filled in. -->
+    <input name="fakeusernameremembered" style="display:none" type="text">
+    <input name="fakepasswordremembered" style="display:none" type="password">
+    <!-- Begin of the "real" formular -->
+
+    <!-- Firstname -->
+    <mat-form-field class="full-width-input">
+      <input matInput placeholder="Firstname" formControlName="firstname" required>
+      <mat-error *ngIf="isFieldInvalid('firstname')">
+        Please enter the firstname.
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Lastname -->
+    <mat-form-field class="full-width-input">
+      <input matInput placeholder="Lastname" formControlName="lastname" required>
+      <mat-error *ngIf="isFieldInvalid('lastname')">
+        Please enter the lastname.
+      </mat-error>
+    </mat-form-field>
+
+    <!-- E-Mail address -->
+    <mat-form-field class="full-width-input">
+      <input matInput placeholder="E-Mail" formControlName="email" required>
+      <mat-error *ngIf="isFieldInvalid('email')">
+        Please enter the email address.
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Username -->
+    <mat-form-field class="full-width-input">
+      <input matInput placeholder="Username" formControlName="username" required>
+      <mat-error *ngIf="isFieldInvalid('username')">
+        Please enter the username.
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Password -->
+    <mat-form-field class="full-width-input">
+      <input matInput placeholder="Password" type="password" formControlName="password">
+      <mat-error *ngIf="isFieldInvalid('password')">
+        Please enter the password
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Repeat password -->
+    <mat-form-field class="full-width-input">
+      <input matInput placeholder="Repeat password" type="password" formControlName="password_repeat">
+      <mat-error *ngIf="isFieldInvalid('password_repeat')">
+        Please repeat the password you have entered.
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Administrator privileges -->
+    <mat-form-field class="full-width-input">
+      <mat-select
+        placeholder="Administrator privileges"
+        formControlName="is_admin"
+        [compareWith]="compareFn">
+        <mat-option [value]="true">Yes</mat-option>
+        <mat-option [value]="false">No</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button mat-button color="primary">Submit</button>
+    <button mat-button (click)="closeDialog()">Cancel</button>
+  </form>
+</div>
