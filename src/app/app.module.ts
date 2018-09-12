@@ -20,6 +20,7 @@ import { OfflineComponent } from './offline/offline.component';
 import { UsersComponent } from './users/users.component';
 import { PurchasesComponent } from './purchases/purchases.component';
 import { DepositsComponent } from './deposits/deposits.component';
+import { CreateDepositComponent } from './deposits/create-deposit/create-deposit.component';
 import { VerificationsComponent } from './verifications/verifications.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { LoadingComponent } from './loading/loading.component';
@@ -62,6 +63,7 @@ const appRoutes: Routes = [
     UsersComponent,
     PurchasesComponent,
     DepositsComponent,
+    CreateDepositComponent,
     VerificationsComponent,
     PagenotfoundComponent,
     LoadingComponent,
@@ -98,7 +100,8 @@ const appRoutes: Routes = [
   ],
   bootstrap: [AppComponent],
   entryComponents: [
-    EditUserComponent
+    EditUserComponent,
+    CreateDepositComponent
   ]
 })
 export class AppModule { }
