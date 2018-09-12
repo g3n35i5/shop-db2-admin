@@ -7,8 +7,8 @@ interface Tile {
   icon: string;
   number: number;
   color: string;
-  link: string
-};
+  link: string;
+}
 
 @Component({
   selector: 'app-dashboard',
@@ -27,7 +27,7 @@ export class DashboardComponent implements OnInit {
     private dataService: DataService
   ) { }
 
-  public tiles : Tile[] = [
+  public tiles: Tile[] = [
     {
       title: 'Users',
       icon: 'group',
@@ -70,16 +70,16 @@ export class DashboardComponent implements OnInit {
   }
 
   loadData() {
-    let users = this.dataService.getUsers();
-    let deposits = this.dataService.getDeposits();
-    let purchases = this.dataService.getPurchases();
-    let products = this.dataService.getProducts();
+    const users = this.dataService.getUsers();
+    const deposits = this.dataService.getDeposits();
+    const purchases = this.dataService.getPurchases();
+    const products = this.dataService.getProducts();
     forkJoin([users, deposits, purchases, products]).subscribe(results => {
       this.users = results[0]['users'];
       this.deposits = results[1]['deposits'];
       this.purchases = results[2]['purchases'];
       this.products = results[3]['products'];
-      this.processingData()
+      this.processingData();
     });
   }
 }
