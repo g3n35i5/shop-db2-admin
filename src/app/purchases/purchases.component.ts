@@ -22,7 +22,7 @@ export class PurchasesComponent implements OnInit {
   public users;
   public dataSource;
   public itemsPerPage = [5, 10, 20, 50];
-  public numItems = 50;
+  public numItems = 10;
   displayedColumns: string[] = ['id', 'firstname', 'lastname', 'productname',
                                 'amount', 'timestamp', 'productprice', 'price',
                                 'revoke'];
