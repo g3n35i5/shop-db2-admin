@@ -49,16 +49,16 @@ export class UsersComponent implements OnInit {
       dialogRef.afterClosed().subscribe(() => {
         this.loadData();
       });
-    })
+    });
   }
 
   /** Load all nescessary data from the backend. */
   loadData() {
     this.loading = true;
-    let users = this.dataService.getUsers();
+    const users = this.dataService.getUsers();
     forkJoin([users]).subscribe(results => {
       this.users = results[0]['users'];
-      this.processingData()
+      this.processingData();
     });
   }
 
