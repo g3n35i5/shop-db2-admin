@@ -14,7 +14,7 @@ export class PurchasesComponent implements OnInit {
 
   /** Define all needed variables. */
   public loading: boolean;
-  public disableInteraction: boolean = true;
+  public disableInteraction: boolean;
   public showTable: boolean;
   private datePipe = new CustomTimestamp();
   public purchases;
@@ -42,31 +42,31 @@ export class PurchasesComponent implements OnInit {
   /** Revoke a purchase. */
   toggleRevoke(purchase) {
     this.disableInteraction = true;
-    let data = { revoked: !purchase.revoked };
+    const data = { revoked: !purchase.revoked };
     this.dataService.togglePurchaseRevoke(purchase.id, data).subscribe(() => {
       this.loadData();
-    })
+    });
   }
 
   /** Load all nescessary data from the backend. */
   loadData() {
-    let users = this.dataService.getUsers();
-    let purchases = this.dataService.getPurchases();
-    let products = this.dataService.getProducts();
+    const users = this.dataService.getUsers();
+    const purchases = this.dataService.getPurchases();
+    const products = this.dataService.getProducts();
     forkJoin([users, purchases, products]).subscribe(results => {
       this.users = results[0]['users'];
       this.purchases = results[1]['purchases'];
       this.products = results[2]['products'];
-      this.processingData()
+      this.processingData();
     });
   }
 
   /** Process the loaded data and ends the loading state.  */
   processingData() {
     if (this.purchases.length > 0) {
-      for (let purchase of this.purchases) {
-        let user = this.users.find(u => u.id === purchase.user_id);
-        let product = this.products.find(p => p.id === purchase.product_id);
+      for (const purchase of this.purchases) {
+        const user = this.users.find(u => u.id === purchase.user_id);
+        const product = this.products.find(p => p.id === purchase.product_id);
         purchase.firstname = user.firstname;
         purchase.lastname = user.lastname;
         purchase.productname = product.name;
