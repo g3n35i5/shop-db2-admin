@@ -5,7 +5,7 @@
     <mat-form-field class="full-width-input">
       <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search in purchases">
     </mat-form-field>
-    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort matSortActive="id" matSortDirection="desc" class="mat-elevation-z8">
 
       <!-- ID Column -->
       <ng-container matColumnDef="id">
