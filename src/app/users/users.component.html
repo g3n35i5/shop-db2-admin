@@ -39,6 +39,12 @@
         <td mat-cell *matCellDef="let user"> {{user.email}} </td>
       </ng-container>
 
+      <!-- Rank Column -->
+      <ng-container matColumnDef="rank">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Rank </th>
+        <td mat-cell *matCellDef="let user"> {{user.rankname}} </td>
+      </ng-container>
+
       <!-- Credit Column -->
       <ng-container matColumnDef="credit">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Credit </th>

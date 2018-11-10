@@ -17,11 +17,12 @@ export class UsersComponent implements OnInit {
   public loading: boolean;
   public showTable: boolean;
   public users;
+  public ranks;
   public dataSource;
   public itemsPerPage = [5, 10, 20, 50];
   public numItems = 10;
   displayedColumns: string[] = ['id', 'firstname', 'lastname', 'isadmin',
-                                'email', 'credit', 'edit'];
+                                'email', 'rank', 'credit', 'edit'];
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
@@ -56,8 +57,10 @@ export class UsersComponent implements OnInit {
   loadData() {
     this.loading = true;
     const users = this.dataService.getUsers();
-    forkJoin([users]).subscribe(results => {
+    const ranks = this.dataService.getRanks();
+    forkJoin([users, ranks]).subscribe(results => {
       this.users = results[0]['users'];
+      this.ranks = results[1]['ranks'];
       this.processingData();
     });
   }
@@ -65,6 +68,9 @@ export class UsersComponent implements OnInit {
   /** Process the loaded data and ends the loading state.  */
   processingData() {
     if (this.users.length > 0) {
+      for (const user of this.users) {
+        user.rankname = this.ranks.find(x => x.id === user.rank_id).name;
+      }
       this.dataSource = new MatTableDataSource(this.users);
       setTimeout(() => this.dataSource.paginator = this.paginator);
       setTimeout(() => this.dataSource.sort = this.sort);
