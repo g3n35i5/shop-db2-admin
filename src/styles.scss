@@ -5,6 +5,10 @@
 /** Roboto font. */
 @import '~roboto-fontface/css/roboto/roboto-fontface.css';
 
+$custom_red: #C62828;
+$custom_green: #4CAF50;
+$custom_cyan: #00B0FF;
+
 body {
   font-family: Roboto, Helvetica, Arial, sans-serif;
   margin: 0;
@@ -19,21 +23,29 @@ table {
 }
 
 .error-snackbar {
-  background: #C62828;
+  background: $custom_red;
   color: #ffffff;
   text-align: center;
 }
 
 .info-snackbar {
-  background: #00B0FF;
+  background: $custom_cyan;
   color: #212121;
   text-align: center;
 }
 
 .success-snackbar {
-  background: #4CAF50;
+  background: $custom_green;
   color: #ffffff;
   text-align: center;
+}
+
+.red-icon {
+  color: $custom_red;
+}
+
+.green-icon {
+  color: $custom_green;
 }
 
 .center-card {

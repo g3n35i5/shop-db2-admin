@@ -63,10 +63,10 @@ export class DashboardComponent implements OnInit {
   }
 
   processingData() {
-    this.tiles[0]['number'] = this.users.length;
-    this.tiles[1]['number'] = this.products.length;
-    this.tiles[2]['number'] = this.purchases.length;
-    this.tiles[3]['number'] = this.deposits.length;
+    this.tiles[0].number = this.users.length;
+    this.tiles[1].number = this.products.length;
+    this.tiles[2].number = this.purchases.length;
+    this.tiles[3].number = this.deposits.length;
   }
 
   loadData() {

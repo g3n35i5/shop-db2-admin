@@ -1,0 +1,45 @@
+<mat-spinner *ngIf="loading"style="margin:0 auto;" mode="indeterminate"></mat-spinner>
+<div *ngIf="!loading">
+  <img [src]="imageURL()" class="productimage">
+  <div class="productname">
+    <h1 class="mat-h1">{{ product.name }}</h1>
+  </div>
+  <div class="container">
+    <div class="entry">
+      <span>Price</span>
+      <span class="right">{{ product.price | customCurrency | currency: 'EUR' }}</span>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="entry">
+      <span>Barcode</span>
+      <span class="right">{{ product.barcode ? product.barcode : '- - -' }}</span>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="entry">
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <div>Active</div>
+        <div>Countable</div>
+        <div>Revocable</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <div>
+          <mat-icon mat-list-icon [ngClass]="product.active ? 'green-icon' : 'red-icon'">
+            {{ product.active ? 'check' : 'close' }}
+          </mat-icon>
+        </div>
+        <div>
+          <mat-icon mat-list-icon [ngClass]="product.countable ? 'green-icon' : 'red-icon'">
+            {{ product.countable ? 'check' : 'close' }}
+          </mat-icon>
+        </div>
+        <div>
+          <mat-icon mat-list-icon [ngClass]="product.revokeable ? 'green-icon' : 'red-icon'">
+            {{ product.revokeable ? 'check' : 'close' }}
+          </mat-icon>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

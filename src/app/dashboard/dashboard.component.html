@@ -6,7 +6,7 @@
   <div fxFlex="25%" *ngFor="let tile of tiles">
     <mat-card [style.background]="tile.color" class="dashboard-card">
       <mat-card-content>
-        <div class="container" fxLayout="row" fxLayoutWrap>
+        <div fxLayout="row" fxLayoutWrap>
           <div fxFlex=25%>
             <mat-icon mat-list-icon class=""> {{ tile.icon }}</mat-icon>
           </div>

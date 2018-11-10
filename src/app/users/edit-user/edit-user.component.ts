@@ -13,7 +13,7 @@ import { SnackbarService } from '../../services/snackbar/snackbar.service';
 export class EditUserComponent implements OnInit {
   form: FormGroup;
   private formSubmitAttempt: boolean;
-  public loading: boolean = true;
+  public loading: boolean;
   private user;
   private editUser;
 
@@ -33,6 +33,7 @@ export class EditUserComponent implements OnInit {
 
   /** Fetch the user from the backend. */
   ngOnInit() {
+    this.loading = true;
     this.user = this.data.user;
     delete this.user.credit;
     this.editUser =  Object.assign({}, this.user);
@@ -67,11 +68,11 @@ export class EditUserComponent implements OnInit {
 
   submitForm() {
     this.formSubmitAttempt = true;
-    let data = {};
+    const data = {};
     /** Add only the data that is different from the original user
         and not null. */
-    for (let item of Object.keys(this.form.value)) {
-      let value = this.form.value[item];
+    for (const item of Object.keys(this.form.value)) {
+      const value = this.form.value[item];
       if (!(typeof value === 'undefined' || value === null || value === '')) {
         if (this.user[item] !== value) {
           data[item] = value;
@@ -82,7 +83,7 @@ export class EditUserComponent implements OnInit {
     if (this.form.valid) {
       this.dataService.updateUser(this.user.id, data).subscribe(() => {
         this.closeDialog();
-      })
+      });
     } else {
       this.snackbar.openSnackBar('The form is invalid.', '', 'error');
     }

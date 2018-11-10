@@ -9,6 +9,7 @@ import { AvatarModule } from 'ng2-avatar';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LayoutModule } from '@angular/cdk/layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ChartsModule } from 'ng2-charts';
 
 import { CustomCurrency } from './filters';
 import { CustomTimestamp } from './filters';
@@ -30,6 +31,10 @@ import { AuthService } from './services/auth/auth.service';
 import { DataService } from './services/data/data.service';
 import { SnackbarService } from './services/snackbar/snackbar.service';
 import { EditUserComponent } from './users/edit-user/edit-user.component';
+import { ProductsComponent } from './products/products.component';
+import { ProductinfoComponent } from './products/productinfo/productinfo.component';
+import { PricehistoryComponent } from './pricehistory/pricehistory.component';
+import { EditproductComponent } from './products/editproduct/editproduct.component';
 
 /** Returns the token from the local storage. Required for the JWT tool. */
 export function tokenGetter() {
@@ -42,6 +47,8 @@ const appRoutes: Routes = [
   { path: 'offline', component: OfflineComponent },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'users', component: UsersComponent, canActivate: [AuthGuard] },
+  { path: 'products', component: ProductsComponent, canActivate: [AuthGuard] },
+  { path: 'pricehistory/:id', component: PricehistoryComponent, canActivate: [AuthGuard] },
   { path: 'purchases', component: PurchasesComponent, canActivate: [AuthGuard] },
   { path: 'deposits', component: DepositsComponent, canActivate: [AuthGuard] },
   { path: 'verifications', component: VerificationsComponent, canActivate: [AuthGuard] },
@@ -67,7 +74,11 @@ const appRoutes: Routes = [
     VerificationsComponent,
     PagenotfoundComponent,
     LoadingComponent,
-    EditUserComponent
+    EditUserComponent,
+    ProductsComponent,
+    ProductinfoComponent,
+    PricehistoryComponent,
+    EditproductComponent
   ],
   imports: [
     BrowserModule,
@@ -79,6 +90,7 @@ const appRoutes: Routes = [
     LayoutModule,
     ReactiveFormsModule,
     FlexLayoutModule,
+    ChartsModule,
     RouterModule.forRoot(appRoutes),
     JwtModule.forRoot({
       config: {
@@ -101,7 +113,9 @@ const appRoutes: Routes = [
   bootstrap: [AppComponent],
   entryComponents: [
     EditUserComponent,
-    CreateDepositComponent
+    CreateDepositComponent,
+    ProductinfoComponent,
+    EditproductComponent
   ]
 })
 export class AppModule { }

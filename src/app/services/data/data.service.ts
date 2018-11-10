@@ -58,8 +58,20 @@ export class DataService {
     return this.getData('products');
   }
 
+  public getProduct(id: number) {
+    return this.getData('products/' + id.toString());
+  }
+
+  public updateProduct(id: number, data: any) {
+    return this.putData('products/' + id.toString(), data);
+  }
+
   public getPendingVerifications() {
     return this.getData('verifications');
+  }
+
+  public upload(data) {
+    return this.postData('upload', data);
   }
 
   public backendOnline() {
