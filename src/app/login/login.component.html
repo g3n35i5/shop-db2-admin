@@ -4,9 +4,9 @@
     <mat-card-content>
       <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <mat-form-field class="full-width-input">
-          <input matInput placeholder="Username or E-Mail" formControlName="identifier" required>
-          <mat-error *ngIf="isFieldInvalid('identifier')">
-            Please inform your user name or your email address
+          <input matInput placeholder="ID" formControlName="id" required type="number">
+          <mat-error *ngIf="isFieldInvalid('id')">
+            Please inform your user ID
           </mat-error>
         </mat-form-field>
         <mat-form-field class="full-width-input">

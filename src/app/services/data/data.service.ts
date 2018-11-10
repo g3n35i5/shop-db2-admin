@@ -5,8 +5,8 @@ import { HttpClient } from '@angular/common/http';
 export class DataService {
   constructor(public http: HttpClient) { }
 
-  public login(identifier: string, password: string) {
-    let data = {identifier: identifier, password: password};
+  public login(id: number, password: string) {
+    const data = {id: id, password: password};
     return this.postData('login', data);
   }
 

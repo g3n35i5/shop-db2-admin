@@ -18,26 +18,27 @@ export class AuthService {
     return this.loggedIn.asObservable();
   }
 
+
   tokenValid() {
-    let token = localStorage.getItem('token');
+    const token = localStorage.getItem('token');
     if (typeof token === 'undefined' || token === null) { return false; }
-    let decoded = this.jwtHelper.decodeToken(token);
+    const decoded = this.jwtHelper.decodeToken(token);
     if (typeof decoded === 'undefined' || decoded === null) { return false; }
-    let isExpired = this.jwtHelper.isTokenExpired(token);
+    const isExpired = this.jwtHelper.isTokenExpired(token);
     return !isExpired;
   }
 
-  login(user){
-    if (user.identifier !== '' && user.password !== '' ) {
-      this.dataService.login(user.identifier, user.password)
+  login(user) {
+    if (user.id !== '' && user.password !== '' ) {
+      this.dataService.login(user.id, user.password)
       .subscribe(result => {
-        let token = result['token'];
+        const token = result['token'];
         if (typeof token === 'undefined' || token === null) {
           this.loggedIn.next(false);
           this.router.navigate(['/login']);
         } else {
           localStorage.setItem('token', token);
-          let currentUser = this.jwtHelper.decodeToken(token).user;
+          const currentUser = this.jwtHelper.decodeToken(token).user;
           localStorage.setItem('currentUser', JSON.stringify(currentUser));
         }
         if (this.tokenValid()) {
@@ -47,7 +48,7 @@ export class AuthService {
           this.loggedIn.next(false);
           this.router.navigate(['/login']);
         }
-      })
+      });
     }
   }
 
