@@ -30,8 +30,9 @@ export class DataService {
     return this.deleteData('users/' + id.toString());
   }
 
-  public verifyUser(id: number) {
-    return this.postData('verify/' + id.toString(), {});
+  public verifyUser(id: number, rankID: number) {
+    const data = {rank_id: rankID};
+    return this.postData('verify/' + id.toString(), data);
   }
 
   public getPurchases() {
@@ -68,6 +69,10 @@ export class DataService {
 
   public getPendingVerifications() {
     return this.getData('verifications');
+  }
+
+  public getRanks() {
+    return this.getData('ranks');
   }
 
   public upload(data) {
