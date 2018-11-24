@@ -35,6 +35,10 @@ export class UsersComponent implements OnInit {
     this.loadData();
   }
 
+  createUser() {
+    alert('Please use the registration site!');
+  }
+
   /** Return the color for the user credit. */
   creditColor(credit) {
     return credit >= 0 ? 'black' : 'red';
