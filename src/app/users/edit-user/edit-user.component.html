@@ -25,22 +25,6 @@
       </mat-error>
     </mat-form-field>
 
-    <!-- E-Mail address -->
-    <mat-form-field class="full-width-input">
-      <input matInput placeholder="E-Mail" formControlName="email" required>
-      <mat-error *ngIf="isFieldInvalid('email')">
-        Please enter the email address.
-      </mat-error>
-    </mat-form-field>
-
-    <!-- Username -->
-    <mat-form-field class="full-width-input">
-      <input matInput placeholder="Username" formControlName="username" required>
-      <mat-error *ngIf="isFieldInvalid('username')">
-        Please enter the username.
-      </mat-error>
-    </mat-form-field>
-
     <!-- Password -->
     <mat-form-field class="full-width-input">
       <input matInput placeholder="Password" type="password" formControlName="password">

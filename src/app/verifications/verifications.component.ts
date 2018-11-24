@@ -20,7 +20,7 @@ export class VerificationsComponent implements OnInit {
   public dataSource;
   public itemsPerPage = [5, 10, 20, 50];
   public numItems = 50;
-  displayedColumns: string[] = ['id', 'firstname', 'lastname', 'email', 'rank',
+  displayedColumns: string[] = ['id', 'firstname', 'lastname', 'rank',
                                 'verify', 'delete'];
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;

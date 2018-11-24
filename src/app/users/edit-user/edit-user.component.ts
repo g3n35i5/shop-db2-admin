@@ -49,16 +49,6 @@ export class EditUserComponent implements OnInit {
         Validators.minLength(2),
         Validators.maxLength(32)])
       ],
-      username: [this.editUser.username, Validators.compose([
-        Validators.required,
-        Validators.minLength(2),
-        Validators.maxLength(32)])
-      ],
-      email: [this.editUser.email, Validators.compose([
-        Validators.required,
-        Validators.minLength(5),
-        Validators.maxLength(64)])
-      ],
       password: [null],
       password_repeat: [null],
       is_admin: [this.editUser.is_admin]

@@ -22,7 +22,7 @@ export class UsersComponent implements OnInit {
   public itemsPerPage = [5, 10, 20, 50];
   public numItems = 10;
   displayedColumns: string[] = ['id', 'firstname', 'lastname', 'isadmin',
-                                'email', 'rank', 'credit', 'edit'];
+                                'rank', 'credit', 'edit'];
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
