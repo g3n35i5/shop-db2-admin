@@ -1,4 +1,5 @@
-<mat-spinner *ngIf="loading"style="margin:0 auto;" mode="indeterminate"></mat-spinner>
+<mat-spinner *ngIf="loading" style="margin:0 auto;"
+             mode="indeterminate"></mat-spinner>
 <div *ngIf="!loading" class="edit-user-content">
   <h1 mat-dialog-title>Edit user</h1>
   <form [formGroup]="form" (ngSubmit)="submitForm()">
@@ -11,7 +12,8 @@
 
     <!-- Firstname -->
     <mat-form-field class="full-width-input">
-      <input matInput placeholder="Firstname" formControlName="firstname" required>
+      <input matInput placeholder="Firstname" formControlName="firstname"
+             required>
       <mat-error *ngIf="isFieldInvalid('firstname')">
         Please enter the firstname.
       </mat-error>
@@ -19,7 +21,8 @@
 
     <!-- Lastname -->
     <mat-form-field class="full-width-input">
-      <input matInput placeholder="Lastname" formControlName="lastname" required>
+      <input matInput placeholder="Lastname" formControlName="lastname"
+             required>
       <mat-error *ngIf="isFieldInvalid('lastname')">
         Please enter the lastname.
       </mat-error>
@@ -27,7 +30,8 @@
 
     <!-- Password -->
     <mat-form-field class="full-width-input">
-      <input matInput placeholder="Password" type="password" formControlName="password">
+      <input matInput placeholder="Password" type="password"
+             formControlName="password">
       <mat-error *ngIf="isFieldInvalid('password')">
         Please enter the password
       </mat-error>
@@ -35,7 +39,8 @@
 
     <!-- Repeat password -->
     <mat-form-field class="full-width-input">
-      <input matInput placeholder="Repeat password" type="password" formControlName="password_repeat">
+      <input matInput placeholder="Repeat password" type="password"
+             formControlName="password_repeat">
       <mat-error *ngIf="isFieldInvalid('password_repeat')">
         Please repeat the password you have entered.
       </mat-error>
