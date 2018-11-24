@@ -43,9 +43,10 @@ export class UsersComponent implements OnInit {
   /** Open a dialog for editing a user's data. */
   editUser(user): void {
     this.dataService.getUser(user.id).subscribe(full_user => {
+      const data = {user: full_user['user'], ranks: this.ranks};
       const dialogRef = this.dialog.open(EditUserComponent, {
         width: '400px',
-        data : full_user
+        data : data
       });
       dialogRef.afterClosed().subscribe(() => {
         this.loadData();

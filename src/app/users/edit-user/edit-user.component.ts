@@ -15,6 +15,7 @@ export class EditUserComponent implements OnInit {
   private formSubmitAttempt: boolean;
   public loading: boolean;
   private user;
+  public ranks;
   private editUser;
 
   constructor(
@@ -35,6 +36,7 @@ export class EditUserComponent implements OnInit {
   ngOnInit() {
     this.loading = true;
     this.user = this.data.user;
+    this.ranks = this.data.ranks;
     delete this.user.credit;
     this.editUser =  Object.assign({}, this.user);
     /** Create a new form*/
@@ -51,7 +53,8 @@ export class EditUserComponent implements OnInit {
       ],
       password: [null],
       password_repeat: [null],
-      is_admin: [this.editUser.is_admin]
+      is_admin: [this.editUser.is_admin],
+      rank_id: [this.editUser.rank_id, Validators.required]
     });
     this.processingData();
   }
