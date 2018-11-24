@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material';
 import { DataService } from '../services/data/data.service';
 import { forkJoin } from 'rxjs';
 import { CreateDepositComponent } from './create-deposit/create-deposit.component';
+import { CustomTimestamp } from '../filters';
 
 @Component({
   selector: 'app-deposits',
@@ -17,6 +18,7 @@ export class DepositsComponent implements OnInit {
   public disableInteraction: boolean;
   public showTable: boolean;
   public deposits;
+  private datePipe = new CustomTimestamp();
   public users;
   public dataSource;
   public itemsPerPage = [5, 10, 20, 50];
@@ -71,6 +73,7 @@ export class DepositsComponent implements OnInit {
     if (this.deposits.length > 0) {
       for (const deposit of this.deposits) {
         const user = this.users.find(u => u.id === deposit.user_id);
+        deposit.timestamp = this.datePipe.transform(deposit.timestamp);
         deposit.firstname = user.firstname;
         deposit.lastname = user.lastname;
       }
