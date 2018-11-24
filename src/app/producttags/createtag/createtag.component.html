@@ -1,0 +1,18 @@
+<mat-spinner *ngIf="loading"style="margin:0 auto;" mode="indeterminate"></mat-spinner>
+<div *ngIf="!loading">
+
+  <h1 mat-dialog-title>Create a new tag</h1>
+  <form [formGroup]="form" (ngSubmit)="createTag()">
+
+    <!-- Tag name -->
+    <mat-form-field class="full-width-input">
+      <input matInput placeholder="Name" formControlName="name" required>
+      <mat-error *ngIf="isFieldInvalid('name')">
+        Please enter the name of the tag.
+      </mat-error>
+    </mat-form-field>
+
+    <button mat-button color="primary">Submit</button>
+    <button mat-button (click)="closeDialog()">Cancel</button>
+  </form>
+</div>

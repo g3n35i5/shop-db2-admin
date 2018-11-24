@@ -67,12 +67,37 @@ export class DataService {
     return this.putData('products/' + id.toString(), data);
   }
 
+  public getProducttags() {
+    return this.getData('tags');
+  }
+
+  public getProducttag(id: number) {
+    return this.getData('tags/' + id.toString());
+  }
+
+  public deleteProducttag(id: number) {
+    return this.deleteData('tags/' + id.toString());
+  }
+
+  public updateProducttag(id: number, data: any) {
+    return this.putData('tags/' + id.toString(), data);
+  }
+
+  public createTag(name: string) {
+    const data = {name: name};
+    return this.postData('tags', data);
+  }
+
   public getPendingVerifications() {
     return this.getData('verifications');
   }
 
   public getRanks() {
     return this.getData('ranks');
+  }
+
+  public getReplenishmentCollections() {
+    return this.getData('replenishmentcollections');
   }
 
   public upload(data) {

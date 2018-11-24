@@ -1,0 +1,67 @@
+<app-loading *ngIf="loading"></app-loading>
+<div *ngIf="!loading">
+  <div *ngIf="showTable">
+    <mat-paginator [pageSizeOptions]="itemsPerPage" [pageSize]="numItems" showFirstLastButtons></mat-paginator>
+    <mat-form-field class="full-width-input">
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search in replenishments">
+    </mat-form-field>
+    <table mat-table [dataSource]="dataSource" matSort matSortActive="id" matSortDirection="desc" class="mat-elevation-z8">
+
+      <!-- ID Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> # </th>
+        <td mat-cell *matCellDef="let repenishmentcollection">
+          {{repenishmentcollection.id}}
+        </td>
+      </ng-container>
+
+      <!-- Timestamp Column -->
+      <ng-container matColumnDef="lastname">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Timestamp </th>
+        <td mat-cell *matCellDef="let repenishmentcollection">
+          {{repenishmentcollection.timestamp}}
+        </td>
+      </ng-container>
+
+      <!-- Comment Column -->
+      <ng-container matColumnDef="firstname">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Comment </th>
+        <td mat-cell *matCellDef="let repenishmentcollection">
+          {{repenishmentcollection.comment}}
+        </td>
+      </ng-container>
+
+      <!-- Total price -->
+      <ng-container matColumnDef="productprice">
+        <th mat-header-cell *matHeaderCellDef> Total price </th>
+        <td mat-cell *matCellDef="let repenishmentcollection" >
+          {{repenishmentcollection.price | customCurrency | currency: 'EUR'}}
+        </td>
+      </ng-container>
+
+      <!-- Info Column -->
+      <ng-container matColumnDef="revoke">
+        <th mat-header-cell *matHeaderCellDef> Info </th>
+        <td mat-cell *matCellDef="let repenishmentcollection">
+          Info
+        </td>
+      </ng-container>
+
+      <!-- Revoke Column -->
+      <ng-container matColumnDef="revoke">
+        <th mat-header-cell *matHeaderCellDef> Revoke </th>
+        <td mat-cell *matCellDef="let repenishmentcollection">
+          Revoke
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+  <div *ngIf="!showTable">
+    <div class="center-card">
+      <h1 class="mat-h1">There are no replenishments yet.</h1>
+    </div>
+  </div>
+</div>

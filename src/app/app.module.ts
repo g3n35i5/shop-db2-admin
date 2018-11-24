@@ -35,6 +35,10 @@ import { ProductsComponent } from './products/products.component';
 import { ProductinfoComponent } from './products/productinfo/productinfo.component';
 import { PricehistoryComponent } from './pricehistory/pricehistory.component';
 import { EditproductComponent } from './products/editproduct/editproduct.component';
+import { ReplenishmentsComponent } from './replenishments/replenishments.component';
+import { ProducttagsComponent } from './producttags/producttags.component';
+import { EditTagComponent } from './producttags/edittag/edittag.component';
+import { CreateTagComponent } from './producttags/createtag/createtag.component';
 
 /** Returns the token from the local storage. Required for the JWT tool. */
 export function tokenGetter() {
@@ -48,6 +52,8 @@ const appRoutes: Routes = [
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'users', component: UsersComponent, canActivate: [AuthGuard] },
   { path: 'products', component: ProductsComponent, canActivate: [AuthGuard] },
+  { path: 'producttags', component: ProducttagsComponent, canActivate: [AuthGuard] },
+  { path: 'replenishments', component: ReplenishmentsComponent, canActivate: [AuthGuard] },
   { path: 'pricehistory/:id', component: PricehistoryComponent, canActivate: [AuthGuard] },
   { path: 'purchases', component: PurchasesComponent, canActivate: [AuthGuard] },
   { path: 'deposits', component: DepositsComponent, canActivate: [AuthGuard] },
@@ -78,7 +84,11 @@ const appRoutes: Routes = [
     ProductsComponent,
     ProductinfoComponent,
     PricehistoryComponent,
-    EditproductComponent
+    EditproductComponent,
+    ReplenishmentsComponent,
+    ProducttagsComponent,
+    EditTagComponent,
+    CreateTagComponent
   ],
   imports: [
     BrowserModule,
@@ -115,7 +125,9 @@ const appRoutes: Routes = [
     EditUserComponent,
     CreateDepositComponent,
     ProductinfoComponent,
-    EditproductComponent
+    EditproductComponent,
+    CreateTagComponent,
+    EditTagComponent
   ]
 })
 export class AppModule { }

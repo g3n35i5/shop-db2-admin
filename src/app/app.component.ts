@@ -41,9 +41,14 @@ export class AppComponent implements OnInit {
       link: 'products'
     },
     {
-      icon: 'collections',
-      title: 'Images',
-      link: 'images'
+      icon: 'local_offer',
+      title: 'Product Tags',
+      link: 'producttags'
+    },
+    {
+      icon: 'shopping_basket',
+      title: 'Replenishments',
+      link: 'replenishments'
     },
     {
       icon: 'shopping_cart',
