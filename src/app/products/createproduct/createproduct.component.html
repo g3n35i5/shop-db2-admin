@@ -1,0 +1,67 @@
+<mat-spinner *ngIf="loading"style="margin:0 auto;" mode="indeterminate"></mat-spinner>
+<div *ngIf="!loading">
+
+  <h1 mat-dialog-title>Create a new product</h1>
+  <form [formGroup]="form" (ngSubmit)="createProduct()">
+
+    <!-- Product name -->
+    <mat-form-field class="full-width-input">
+      <input matInput placeholder="Name" formControlName="name" required>
+      <mat-error *ngIf="isFieldInvalid('name')">
+        Please enter the name of the product.
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Product price -->
+    <mat-form-field class="full-width-input">
+      <input matInput placeholder="Price" type="number" formControlName="price" required>
+      <mat-error *ngIf="isFieldInvalid('price')">
+        Please enter the price of the product in cents.
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Barcode name -->
+    <mat-form-field class="full-width-input">
+      <input matInput placeholder="Barcode" formControlName="barcode">
+      <mat-error *ngIf="isFieldInvalid('barcode')">
+        Please enter the barcode of the product.
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Active -->
+    <mat-form-field class="full-width-input">
+      <mat-select
+        placeholder="Active"
+        formControlName="active"
+        [compareWith]="compareFn">
+        <mat-option [value]="true">Yes</mat-option>
+        <mat-option [value]="false">No</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- Revokeable -->
+    <mat-form-field class="full-width-input">
+      <mat-select
+        placeholder="Revokeable"
+        formControlName="revokeable"
+        [compareWith]="compareFn">
+        <mat-option [value]="true">Yes</mat-option>
+        <mat-option [value]="false">No</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- Countable -->
+    <mat-form-field class="full-width-input">
+      <mat-select
+        placeholder="Countable"
+        formControlName="countable"
+        [compareWith]="compareFn">
+        <mat-option [value]="true">Yes</mat-option>
+        <mat-option [value]="false">No</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button mat-button color="primary">Submit</button>
+    <button mat-button (click)="closeDialog()">Cancel</button>
+  </form>
+</div>

@@ -5,6 +5,7 @@ import { DataService } from '../services/data/data.service';
 import { forkJoin } from 'rxjs';
 import { ProductinfoComponent } from './productinfo/productinfo.component';
 import { EditproductComponent } from './editproduct/editproduct.component';
+import { CreateProductComponent } from './createproduct/createproduct.component';
 
 @Component({
   selector: 'app-products',
@@ -39,8 +40,10 @@ export class ProductsComponent implements OnInit {
   loadData() {
     this.loading = true;
     const products = this.dataService.getProducts();
-    forkJoin([products]).subscribe(results => {
+    const tags = this.dataService.getProducttags();
+    forkJoin([products, tags]).subscribe(results => {
       this.products = results[0]['products'];
+      this.tags = results[1]['tags'];
       this.processingData();
     });
   }
@@ -48,6 +51,9 @@ export class ProductsComponent implements OnInit {
   /** Process the loaded data and ends the loading state.  */
   processingData() {
     if (this.products.length > 0) {
+      for (const tag of this.tags) {
+        this.tagMap.set(tag.id, tag.name);
+      }
       this.dataSource = new MatTableDataSource(this.products);
       setTimeout(() => this.dataSource.paginator = this.paginator);
       setTimeout(() => this.dataSource.sort = this.sort);
@@ -55,6 +61,7 @@ export class ProductsComponent implements OnInit {
     } else {
       this.showTable = false;
     }
+
     this.loading = false;
     this.disableInteraction = false;
   }
@@ -62,6 +69,19 @@ export class ProductsComponent implements OnInit {
   /** Filter the products depending on the current filter value.  */
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+
+  createProduct() {
+    const dialogRef = this.dialog.open(CreateProductComponent, {
+      width: '500px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.loadData();
+      }
+    });
   }
 
   /** Open a dialog for editing the product */

@@ -39,6 +39,7 @@ import { ReplenishmentsComponent } from './replenishments/replenishments.compone
 import { ProducttagsComponent } from './producttags/producttags.component';
 import { EditTagComponent } from './producttags/edittag/edittag.component';
 import { CreateTagComponent } from './producttags/createtag/createtag.component';
+import { CreateProductComponent } from './products/createproduct/createproduct.component';
 
 /** Returns the token from the local storage. Required for the JWT tool. */
 export function tokenGetter() {
@@ -88,7 +89,8 @@ const appRoutes: Routes = [
     ReplenishmentsComponent,
     ProducttagsComponent,
     EditTagComponent,
-    CreateTagComponent
+    CreateTagComponent,
+    CreateProductComponent
   ],
   imports: [
     BrowserModule,
@@ -127,7 +129,8 @@ const appRoutes: Routes = [
     ProductinfoComponent,
     EditproductComponent,
     CreateTagComponent,
-    EditTagComponent
+    EditTagComponent,
+    CreateProductComponent
   ]
 })
 export class AppModule { }

@@ -63,6 +63,10 @@ export class DataService {
     return this.getData('products/' + id.toString());
   }
 
+  public createProduct(data: any) {
+    return this.postData('products', data);
+  }
+
   public updateProduct(id: number, data: any) {
     return this.putData('products/' + id.toString(), data);
   }
