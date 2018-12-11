@@ -1,13 +1,13 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 import {
   HttpResponse,
   HttpInterceptor,
   HttpHandler,
   HttpRequest,
   HttpEvent
-} from "@angular/common/http";
-import { Observable } from "rxjs";
-import { tap } from "rxjs/operators";
+} from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import { SnackbarService } from '../snackbar/snackbar.service';
 import { Router } from '@angular/router';
 
@@ -19,7 +19,7 @@ export class InterceptorComponent implements HttpInterceptor {
   ) {}
 
   /** Intercept all HTTP requests. Open a snackbar on success or error.*/
-  intercept(request: HttpRequest<any>, next: HttpHandler):Observable<HttpEvent<any>> {
+  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(request).pipe(
       tap(event => {
         if (event instanceof HttpResponse) {
@@ -39,7 +39,6 @@ export class InterceptorComponent implements HttpInterceptor {
           this.snackbar.openSnackBar(error.error.message, '', error.error.result);
         }
       })
-    )
-
-  };
+    );
+  }
 }
