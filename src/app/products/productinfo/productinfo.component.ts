@@ -1,5 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { DataService } from '../../services/data/data.service';
+import {forkJoin} from 'rxjs';
 
 @Component({
   selector: 'app-productinfo',
@@ -10,16 +12,43 @@ export class ProductinfoComponent implements OnInit {
 
   constructor(
     @Inject(MAT_DIALOG_DATA) private data: any,
-    public dialogRef: MatDialogRef<ProductinfoComponent>
+    public dialogRef: MatDialogRef<ProductinfoComponent>,
+    private dataService: DataService
   ) { }
 
   public product;
   public loading: boolean;
+  private tagMap: Map = new Map();
+  private tags;
 
   ngOnInit() {
-    this.loading = true;
+    //  Get a copy of the product.
     this.product = this.data.product;
-    console.log(this.product)
+    this.loadData();
+  }
+
+  loadData() {
+    this.loading = true;
+    const tags = this.dataService.getProducttags();
+    forkJoin([tags]).subscribe(result => {
+      this.tags = result[0]['tags'];
+      this.processingData();
+    });
+  }
+
+  processingData() {
+    Array.from(this.tags).forEach((tag => {
+      this.tagMap.set(tag['id'], tag['name']);
+    }));
+    const tagIDs = this.product.tags;
+    const tagNames = [];
+    delete this.product.tags;
+
+    for (const tagID of tagIDs) {
+      tagNames.push(this.tagMap.get(tagID));
+    }
+    this.product.tags = tagNames.join(', ');
+
     this.loading = false;
   }
 
