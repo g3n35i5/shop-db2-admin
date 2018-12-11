@@ -52,8 +52,7 @@ export class PricehistoryComponent implements OnInit {
       yAxes: [{
         ticks: {
           beginAtZero: true,
-          min: 0,
-          max: 10
+          max: null
         },
         scaleLabel: {
           display: true,

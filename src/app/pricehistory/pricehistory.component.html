@@ -1,6 +1,6 @@
 <app-loading *ngIf="loading"></app-loading>
 <div *ngIf="!loading">
-  <mat-card class="dateselectcard">
+  <mat-card>
     <mat-form-field>
       <input matInput [matDatepicker]="picker" [min]="minDate" [max]="maxDate" placeholder="Start date">
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
@@ -8,7 +8,7 @@
     </mat-form-field>
   </mat-card>
 
-  <mat-card>
+  <mat-card class="mt-1">
     <mat-card-header>
       <h1 class="mat-h1">Pricehistory of {{ product.name }}</h1>
     </mat-card-header>
@@ -17,6 +17,7 @@
           baseChart
           [chartType]="'line'"
           [datasets]="chartData"
+          [labels]="chartLabels"
           [options]="chartOptions">
       </canvas>
     </mat-card-content>
