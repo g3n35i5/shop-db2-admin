@@ -1,8 +1,20 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import {
+  MatDialogRef,
+  MAT_DIALOG_DATA,
+  MatAutocompleteSelectedEvent,
+  MatChipInputEvent,
+  MatAutocomplete
+} from '@angular/material';
 import { DataService } from '../../services/data/data.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { SnackbarService } from '../../services/snackbar/snackbar.service';
+
+import {COMMA, ENTER} from '@angular/cdk/keycodes';
+import {Component, ElementRef, ViewChild} from '@angular/core';
+import {FormControl} from '@angular/forms';
+import {Observable} from 'rxjs';
+import {map, startWith} from 'rxjs/operators';
 
 @Component({
   selector: 'app-editproduct',
@@ -26,10 +38,38 @@ export class EditproductComponent implements OnInit {
   private formSubmitAttempt: boolean;
 
   private uploadImageData;
+  private tagMap = new Map();
+
+  visible = true;
+  selectable = true;
+  removable = true;
+  addOnBlur = true;
+  separatorKeysCodes: number[] = [ENTER, COMMA];
+  tagCtrl = new FormControl();
+  filteredTags: Observable<string[]>;
+  tags: string[] = [];
+  allTags: string[] = [];
+
+  @ViewChild('tagInput') tagInput: ElementRef<HTMLInputElement>;
+  @ViewChild('auto') matAutocomplete: MatAutocomplete;
 
   ngOnInit() {
     this.loading = true;
     this.product = this.data.product;
+    this.dataService.getProducttags().subscribe(res => {
+      const tags = res['tags'];
+      for (const tag of tags) {
+        if (this.product.tags.includes(tag['id'])) {
+          this.tags.push(tag['name']);
+        }
+        this.tagMap.set(tag['id'], tag['name']);
+        this.allTags.push(tag['name']);
+      }
+    });
+
+    this.filteredTags = this.tagCtrl.valueChanges.pipe(
+      startWith(null),
+      map((tag: string | null) => tag ? this._filter(tag) : this.allTags.slice()));
     this.editProduct =  Object.assign({}, this.product);
     /** Create a new form*/
     this.form = this.fb.group({
@@ -48,6 +88,78 @@ export class EditproductComponent implements OnInit {
       countable: [this.editProduct.countable]
     });
     this.loading = false;
+  }
+
+  add(event: MatChipInputEvent): void {
+    // Add fruit only when MatAutocomplete is not open
+    // To make sure this does not conflict with OptionSelected Event
+    if (!this.matAutocomplete.isOpen) {
+      const input = event.input;
+      const value = event.value;
+      if ((value || '').trim()) {
+        const name = value.trim();
+        if (this.tags.indexOf(name) === -1) {
+          this.tags.push(name);
+        }
+      }
+
+      // Reset the input value
+      if (input) {
+        input.value = '';
+      }
+
+      this.tagCtrl.setValue(null);
+    }
+  }
+
+  remove(tag: string): void {
+    // Get the ID of the removed tag
+    let tagID = null;
+
+    for (const entry of Array.from(this.tagMap.entries())) {
+      const id = entry[0];
+      const name = entry[1];
+      if (name === tag) {
+        tagID = id;
+        break;
+      }
+    }
+    if (tagID !== null) {
+      const index = this.allTags.indexOf(tag);
+      if (index >= 0) {
+        this.tags.splice(index, 1);
+      }
+
+      this.dataService.removeTagAssignment(this.product.id, tagID).subscribe();
+    }
+  }
+
+  selected(event: MatAutocompleteSelectedEvent): void {
+    const tagName = event.option.viewValue;
+
+    let tagID = null;
+
+    for (const entry of Array.from(this.tagMap.entries())) {
+      const id = entry[0];
+      const name = entry[1];
+      if (name === tagName) {
+        tagID = id;
+        break;
+      }
+    }
+
+    if (tagID !== null) {
+      this.tags.push(tagName);
+      this.tagInput.nativeElement.value = '';
+      this.tagCtrl.setValue(null);
+      this.dataService.addTagAssignment(this.product.id, tagID).subscribe();
+    }
+  }
+
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.allTags.filter(tag => tag.toLowerCase().indexOf(filterValue) === 0);
   }
 
   isFieldInvalid(field: string) {
@@ -144,7 +256,7 @@ export class EditproductComponent implements OnInit {
     if (Object.keys(updateData).length !== 0) {
       this.dataService.updateProduct(this.product.id, updateData).subscribe(() => {
         this.closeDialog(true);
-      })
+      });
     } else {
       this.snackbar.openSnackBar('Nothing has changed', '', 'info');
       this.closeDialog(false);
