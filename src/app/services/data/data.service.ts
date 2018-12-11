@@ -71,8 +71,23 @@ export class DataService {
     return this.putData('products/' + id.toString(), data);
   }
 
+  public getFinancialOverview() {
+    return this.getData('financial_overview');
+  }
+
   public getProducttags() {
     return this.getData('tags');
+  }
+
+  public addTagAssignment(productID: number, tagID: number) {
+    const data = { product_id: productID, tag_id: tagID };
+    return this.postData('tagassignment/add', data);
+  }
+
+  public removeTagAssignment(productID: number, tagID: number) {
+    const data = { product_id: productID, tag_id: tagID };
+    console.log(data);
+    return this.postData('tagassignment/remove', data);
   }
 
   public getProducttag(id: number) {
@@ -140,9 +155,9 @@ export class DataService {
       token = '';
     }
     /** Define the request header with the access token. */
-    let header = {
+    const header = {
       token: token
-    }
+    };
     /** Switch case for the different request methods. */
     if (type === 'GET') {
       return this.http.get('/api/' + route, { headers: header });
