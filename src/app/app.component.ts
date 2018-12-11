@@ -24,6 +24,7 @@ export class AppComponent implements OnInit {
 
   public name: string;
   public email: string;
+  public avatarColor = '#454545';
   public elements = [
     {
       icon: 'dashboard',
