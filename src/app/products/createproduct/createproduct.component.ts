@@ -23,8 +23,6 @@ export class CreateProductComponent implements OnInit {
   form: FormGroup;
   private formSubmitAttempt: boolean;
 
-  private uploadImageData;
-
   ngOnInit() {
     this.loading = true;
     /** Create a new form*/
