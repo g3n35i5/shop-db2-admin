@@ -18,10 +18,45 @@ interface Tile {
 
 export class DashboardComponent implements OnInit {
 
+  public loading: boolean;
   private users;
   private deposits;
   private purchases;
   private products;
+  private financial_overview;
+  public chartData: any = [];
+  public chartLabels: string[] = ['Incomes', 'Expenses'];
+
+  chartOptions = {
+    type: 'bar',
+    tooltips: {
+      callbacks: {
+        label: function(tooltipItem) {
+          return Number(tooltipItem.yLabel).toFixed(2) + ' €';
+        }
+      }
+    },
+    legend: {
+      display: true,
+    },
+    responsive: true,
+    maintainAspectRatio: false,
+    scales: {
+      xAxes: [{
+        stacked: true,
+      }],
+      yAxes: [{
+        stacked: true,
+        ticks: {
+          beginAtZero: true,
+        },
+        scaleLabel: {
+          display: true,
+          labelString: '€'
+        }
+      }]
+    }
+  };
 
   constructor(
     private dataService: DataService
@@ -67,18 +102,33 @@ export class DashboardComponent implements OnInit {
     this.tiles[1].number = this.products.length;
     this.tiles[2].number = this.purchases.length;
     this.tiles[3].number = this.deposits.length;
+    const expenses = this.financial_overview['expenses']['items'];
+    const incomes = this.financial_overview['incomes']['items'];
+
+    for (const inc of incomes) {
+      this.chartData.push({data: [inc.amount / 100], label: inc.name, stack: '1'});
+    }
+
+    for (const ex of expenses) {
+      this.chartData.push({data: [ex.amount / 100], label: ex.name, stack: '2'});
+    }
+    this.loading = false;
   }
 
   loadData() {
+    this.loading = true;
     const users = this.dataService.getUsers();
     const deposits = this.dataService.getDeposits();
     const purchases = this.dataService.getPurchases();
     const products = this.dataService.getProducts();
-    forkJoin([users, deposits, purchases, products]).subscribe(results => {
+    const financial_overview = this.dataService.getFinancialOverview();
+    forkJoin([users, deposits, purchases, products, financial_overview])
+      .subscribe(results => {
       this.users = results[0]['users'];
       this.deposits = results[1]['deposits'];
       this.purchases = results[2]['purchases'];
       this.products = results[3]['products'];
+      this.financial_overview = results[4]['financial_overview'];
       this.processingData();
     });
   }
