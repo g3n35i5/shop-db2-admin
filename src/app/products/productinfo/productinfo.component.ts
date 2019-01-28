@@ -18,7 +18,7 @@ export class ProductinfoComponent implements OnInit {
 
   public product;
   public loading: boolean;
-  private tagMap: Map = new Map();
+  private tagMap = new Map();
   private tags;
 
   ngOnInit() {

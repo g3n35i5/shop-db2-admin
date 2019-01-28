@@ -19,10 +19,13 @@ export class ProductsComponent implements OnInit {
   public disableInteraction: boolean;
   public showTable: boolean;
   public products;
+  public tags;
+  public tagMap = new Map();
   public dataSource;
   public itemsPerPage = [5, 10, 20, 50];
   public numItems = 10;
-  displayedColumns: string[] = ['id', 'name', 'price', 'pricehistory', 'info', 'edit'];
+  displayedColumns: string[] = ['id', 'name', 'price', 'pricehistory',
+                                'info', 'edit'];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -36,14 +39,12 @@ export class ProductsComponent implements OnInit {
     this.loadData();
   }
 
-  /** Load all nescessary data from the backend. */
+  /** Load all necessary data from the backend. */
   loadData() {
     this.loading = true;
     const products = this.dataService.getProducts();
-    const tags = this.dataService.getProducttags();
-    forkJoin([products, tags]).subscribe(results => {
+    forkJoin([products]).subscribe(results => {
       this.products = results[0]['products'];
-      this.tags = results[1]['tags'];
       this.processingData();
     });
   }
@@ -51,9 +52,6 @@ export class ProductsComponent implements OnInit {
   /** Process the loaded data and ends the loading state.  */
   processingData() {
     if (this.products.length > 0) {
-      for (const tag of this.tags) {
-        this.tagMap.set(tag.id, tag.name);
-      }
       this.dataSource = new MatTableDataSource(this.products);
       setTimeout(() => this.dataSource.paginator = this.paginator);
       setTimeout(() => this.dataSource.sort = this.sort);

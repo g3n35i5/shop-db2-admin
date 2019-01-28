@@ -1,4 +1,10 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Inject,
+  ElementRef,
+  ViewChild
+} from '@angular/core';
 import {
   MatDialogRef,
   MAT_DIALOG_DATA,
@@ -11,7 +17,6 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { SnackbarService } from '../../services/snackbar/snackbar.service';
 
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
-import {Component, ElementRef, ViewChild} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
@@ -169,13 +174,15 @@ export class EditproductComponent implements OnInit {
     );
   }
 
-  /** We need this two functions to set the default value for the select
-      field */
-  compareFn: ((f1: any, f2: any) => boolean) | null = this.compareByValue;
+
 
   compareByValue(f1: any, f2: any) {
     return f1 && f2;
   }
+
+  /** We need this two functions to set the default value for the select
+   field */
+  compareFn: ((f1: any, f2: any) => boolean) | null = this.compareByValue;
 
   fileChanged(event) {
     if (event.target.files) {
