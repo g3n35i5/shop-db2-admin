@@ -48,7 +48,7 @@ export class PurchasesComponent implements OnInit {
     });
   }
 
-  /** Load all nescessary data from the backend. */
+  /** Load all necessary data from the backend. */
   loadData() {
     const users = this.dataService.getUsers();
     const purchases = this.dataService.getPurchases();

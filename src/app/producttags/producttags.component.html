@@ -2,7 +2,7 @@
 <div *ngIf="!loading">
   <!-- Scroll to top button -->
   <div *ngIf="showTable">
-    <button mat-fab class="addButton" color="primary" (click)="createTag()">
+    <button mat-fab class="addButton" color="accent" (click)="createTag()">
       <mat-icon>add</mat-icon>
     </button>
     <mat-paginator [pageSizeOptions]="itemsPerPage" [pageSize]="numItems"

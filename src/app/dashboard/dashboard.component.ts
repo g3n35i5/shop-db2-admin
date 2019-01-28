@@ -25,7 +25,6 @@ export class DashboardComponent implements OnInit {
   private products;
   private financial_overview;
   public chartData: any = [];
-  public chartLabels: string[] = ['Incomes', 'Expenses'];
 
   chartOptions = {
     type: 'bar',
