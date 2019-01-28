@@ -119,6 +119,10 @@ export class DataService {
     return this.getData('replenishmentcollections');
   }
 
+  public createReplenishmentCollection(data: any) {
+    return this.postData('replenishmentcollections', data);
+  }
+
   public upload(data) {
     return this.postData('upload', data);
   }

@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material';
 import { DataService } from '../services/data/data.service';
 import { forkJoin } from 'rxjs';
 import { CustomTimestamp } from '../filters';
+import { CreateReplenishmentComponent } from './createreplenishment/createreplenishment.component';
 
 @Component({
   selector: 'app-replenishments',
@@ -23,7 +24,7 @@ export class ReplenishmentsComponent implements OnInit {
   public dataSource;
   public itemsPerPage = [5, 10, 20, 50];
   public numItems = 10;
-  displayedColumns: string[] = ['id', 'timestamp', 'price', 'info', 'revoke'];
+  displayedColumns: string[] = ['id', 'timestamp', 'comment', 'price', 'info', 'revoke'];
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
@@ -37,14 +38,17 @@ export class ReplenishmentsComponent implements OnInit {
     this.loadData();
   }
 
-  // /** Revoke a purchase. */
-  // toggleRevoke(purchase) {
-  //   this.disableInteraction = true;
-  //   const data = { revoked: !purchase.revoked };
-  //   this.dataService.togglePurchaseRevoke(purchase.id, data).subscribe(() => {
-  //     this.loadData();
-  //   });
-  // }
+  createReplenishment() {
+    const dialogRef = this.dialog.open(CreateReplenishmentComponent, {
+      width: '800px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.loadData();
+      }
+    });
+  }
 
   /** Load all necessary data from the backend. */
   loadData() {
