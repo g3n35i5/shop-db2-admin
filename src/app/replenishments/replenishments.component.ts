@@ -1,10 +1,13 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
-import { MatDialog } from '@angular/material';
-import { DataService } from '../services/data/data.service';
-import { forkJoin } from 'rxjs';
-import { CustomTimestamp } from '../filters';
-import { CreateReplenishmentComponent } from './createreplenishment/createreplenishment.component';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {MatPaginator, MatTableDataSource, MatSort} from '@angular/material';
+import {MatDialog} from '@angular/material';
+import {DataService} from '../services/data/data.service';
+import {forkJoin} from 'rxjs';
+import {CustomTimestamp} from '../filters';
+import {CreateReplenishmentComponent} from './createreplenishment/createreplenishment.component';
+import {ReplenishmentCollection} from '../interfaces/replenishmentcollection';
+import {ReplenishmentcollectioninfoComponent} from './replenishmentcollectioninfo/replenishmentcollectioninfo.component';
+import {ProductinfoComponent} from '../products/productinfo/productinfo.component';
 
 @Component({
   selector: 'app-replenishments',
@@ -19,23 +22,43 @@ export class ReplenishmentsComponent implements OnInit {
   public showTable: boolean;
   private datePipe = new CustomTimestamp();
   public replenishments;
+  private users;
   public products;
-  public users;
   public dataSource;
   public itemsPerPage = [5, 10, 20, 50];
   public numItems = 10;
-  displayedColumns: string[] = ['id', 'timestamp', 'comment', 'price', 'info', 'revoke'];
+  displayedColumns: string[] = ['id', 'timestamp', 'admin', 'comment', 'price', 'info', 'revoke'];
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(
     public dialog: MatDialog,
     private dataService: DataService
-  ) { }
+  ) {
+  }
 
   ngOnInit() {
     this.loading = true;
     this.loadData();
+  }
+
+  toggleRevoke(collection: ReplenishmentCollection): void {
+    this.disableInteraction = true;
+    const data = {revoked: !collection.revoked};
+    this.dataService.toggleReplenishmentCollectionRevoke(collection.id, data).subscribe(() => {
+      this.loadData();
+    });
+  }
+
+  getInfo(collection: ReplenishmentCollection) {
+    const dialogRef = this.dialog.open(ReplenishmentcollectioninfoComponent, {
+      width: '800px',
+      data: {id: collection.id}
+    });
+
+    dialogRef.afterClosed().subscribe(() => {
+      this.loadData();
+    });
   }
 
   createReplenishment() {
@@ -50,11 +73,21 @@ export class ReplenishmentsComponent implements OnInit {
     });
   }
 
+  getUserNameByID(id: number): string {
+    const user = this.users.find(u => u.id === id);
+    if (user === 'undefined') {
+      return 'unknown';
+    }
+    return user.lastname + ', ' + user.firstname;
+  }
+
   /** Load all necessary data from the backend. */
   loadData() {
     const replenishments = this.dataService.getReplenishmentCollections();
-    forkJoin([replenishments]).subscribe(results => {
+    const users = this.dataService.getUsers();
+    forkJoin([replenishments, users]).subscribe(results => {
       this.replenishments = results[0]['replenishmentcollections'];
+      this.users = results[1]['users'];
       this.processingData();
     });
   }

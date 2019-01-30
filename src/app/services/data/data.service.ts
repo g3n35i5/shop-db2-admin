@@ -119,10 +119,21 @@ export class DataService {
     return this.getData('replenishmentcollections');
   }
 
+  public getReplenishmentCollection(id: number) {
+    return this.getData('replenishmentcollections/' + id.toString());
+  }
+
   public createReplenishmentCollection(data: any) {
     return this.postData('replenishmentcollections', data);
   }
 
+  public toggleReplenishmentCollectionRevoke(id: number, data: any) {
+    return this.putData('replenishmentcollections/' + id.toString(), data);
+  }
+
+  public toggleReplenishmentRevoke(id: number, data: any) {
+    return this.putData('replenishments/' + id.toString(), data);
+  }
   public upload(data) {
     return this.postData('upload', data);
   }

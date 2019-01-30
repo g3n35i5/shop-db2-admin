@@ -131,9 +131,11 @@ export class CreateReplenishmentComponent implements OnInit {
 
     // Create a replenishment object.
     const replenishment: Replenishment = {
+      id: null,
       product_id: product.id,
       amount: amount,
-      total_price: total_price
+      total_price: total_price,
+      revoked: null
     };
 
     // If this product already exists in the replenishmentList, display a

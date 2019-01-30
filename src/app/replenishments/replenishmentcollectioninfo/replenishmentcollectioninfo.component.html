@@ -1,0 +1,27 @@
+<mat-spinner *ngIf="loading"style="margin:0 auto;" mode="indeterminate"></mat-spinner>
+<div *ngIf="!loading">
+  <h1 mat-dialog-title>{{collection.comment}}</h1>
+  {{collection.timestamp}}
+
+  <div mat-dialog-content>
+    <mat-list>
+      <mat-list-item *ngFor="let replenishment of collection.replenishments">
+        <img matListAvatar [src]="imagePath(replenishment)">
+        <h4 mat-line>
+          <strong>{{replenishment.amount}}x </strong>
+          {{getProductByID(replenishment.product_id).name}}
+        </h4>
+        <p mat-line> {{replenishment.total_price | customCurrency | currency: 'EUR'}} </p>
+        <span class="fill-remaining-space"></span>
+        <button mat-icon-button [color]="replenishment.revoked ? 'accent' : 'primary'" (click)="toggleRevoke(replenishment)" [disabled]="disableInteraction">
+          {{ replenishment.revoked ? 'Undo' : 'Revoke' }}
+        </button>
+      </mat-list-item>
+      <mat-list-item class="replenishments-sum">
+        <h3 matLine>Total price</h3>
+        <span class="fill-remaining-space"></span>
+        {{collection.price | customCurrency | currency: 'EUR'}}
+      </mat-list-item>
+    </mat-list>
+  </div>
+</div>
