@@ -147,6 +147,18 @@ export class DataService {
     return this.postData('refunds', data);
   }
 
+  public getPayoffs() {
+    return this.getData('payoffs');
+  }
+
+  public togglePayoffRevoke(id: number, data: any) {
+    return this.putData('payoffs/' + id.toString(), data);
+  }
+
+  public createPayoff(data: any) {
+    return this.postData('payoffs', data);
+  }
+
   public upload(data) {
     return this.postData('upload', data);
   }

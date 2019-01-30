@@ -67,6 +67,11 @@ export class AppComponent implements OnInit {
       link: 'refunds'
     },
     {
+      icon: 'euro_symbol',
+      title: 'Payoffs',
+      link: 'payoffs'
+    },
+    {
       icon: 'verified_user',
       title: 'Verifications',
       link: 'verifications'
