@@ -83,7 +83,6 @@ export class VerificationsComponent implements OnInit {
       this.showTable = false;
     }
     this.loading = false;
-    console.log(this.ranks)
   }
 
   /** Filter the users depending on the current filter value.  */
