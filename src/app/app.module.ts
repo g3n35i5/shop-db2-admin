@@ -42,6 +42,8 @@ import { CreateTagComponent } from './producttags/createtag/createtag.component'
 import { CreateProductComponent } from './products/createproduct/createproduct.component';
 import { CreateReplenishmentComponent } from './replenishments/createreplenishment/createreplenishment.component';
 import { ReplenishmentcollectioninfoComponent } from './replenishments/replenishmentcollectioninfo/replenishmentcollectioninfo.component';
+import { RefundsComponent } from './refunds/refunds.component';
+import { CreateRefundComponent } from './refunds/create-refund/create-refund.component';
 
 /** Returns the token from the local storage. Required for the JWT tool. */
 export function tokenGetter() {
@@ -60,6 +62,7 @@ const appRoutes: Routes = [
   { path: 'pricehistory/:id', component: PricehistoryComponent, canActivate: [AuthGuard] },
   { path: 'purchases', component: PurchasesComponent, canActivate: [AuthGuard] },
   { path: 'deposits', component: DepositsComponent, canActivate: [AuthGuard] },
+  { path: 'refunds', component: RefundsComponent, canActivate: [AuthGuard] },
   { path: 'verifications', component: VerificationsComponent, canActivate: [AuthGuard] },
   { path: '',
     redirectTo: '/dashboard',
@@ -95,6 +98,8 @@ const appRoutes: Routes = [
     CreateProductComponent,
     CreateReplenishmentComponent,
     ReplenishmentcollectioninfoComponent,
+    RefundsComponent,
+    CreateRefundComponent
   ],
   imports: [
     BrowserModule,
@@ -137,6 +142,7 @@ const appRoutes: Routes = [
     CreateProductComponent,
     CreateReplenishmentComponent,
     ReplenishmentcollectioninfoComponent,
+    CreateRefundComponent,
   ]
 })
 export class AppModule { }

@@ -134,6 +134,19 @@ export class DataService {
   public toggleReplenishmentRevoke(id: number, data: any) {
     return this.putData('replenishments/' + id.toString(), data);
   }
+
+  public getRefunds() {
+    return this.getData('refunds');
+  }
+
+  public toggleRefundRevoke(id: number, data: any) {
+    return this.putData('refunds/' + id.toString(), data);
+  }
+
+  public createRefund(data: any) {
+    return this.postData('refunds', data);
+  }
+
   public upload(data) {
     return this.postData('upload', data);
   }

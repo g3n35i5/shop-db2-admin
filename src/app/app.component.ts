@@ -62,6 +62,11 @@ export class AppComponent implements OnInit {
       link: 'deposits'
     },
     {
+      icon: 'settings_backup_restore',
+      title: 'Refunds',
+      link: 'refunds'
+    },
+    {
       icon: 'verified_user',
       title: 'Verifications',
       link: 'verifications'

@@ -1,0 +1,47 @@
+<mat-spinner *ngIf="loading" style="margin:0 auto;"
+             mode="indeterminate"></mat-spinner>
+<div *ngIf="!loading" class="create-refund-content">
+  <h1 mat-dialog-title>Create refund</h1>
+  <form [formGroup]="form">
+
+    <!-- Amount -->
+    <mat-form-field class="full-width-input">
+      <input matInput type="number" placeholder="Amount in cents"
+             formControlName="total_price" required>
+      <mat-error *ngIf="isFieldInvalid('total_price')">
+        Please enter the amount in cents.
+      </mat-error>
+    </mat-form-field>
+
+    <!-- User -->
+    <mat-form-field class="full-width-input">
+      <input type="text" placeholder="User" matInput [formControl]="userControl"
+             [matAutocomplete]="auto">
+      <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn"
+                        (optionSelected)="userChanged($event)">
+        <mat-option *ngFor="let user of filteredUsers | async" [value]="user">
+          {{ user.name }}
+        </mat-option>
+      </mat-autocomplete>
+      <button mat-button matSuffix mat-icon-button (click)="resetUser($event)">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <!-- Other comment -->
+    <mat-form-field class="full-width-input">
+      <input matInput placeholder="Comment" minLength="minCommentLength"
+             maxlength="maxCommentLength" formControlName="comment" required>
+      <mat-hint align="end">
+        {{ commentLengthHint() }}
+      </mat-hint>
+      <mat-error *ngIf="isFieldInvalid('comment')">
+        Please enter a comment.
+      </mat-error>
+    </mat-form-field>
+
+
+    <button mat-button (click)="submitForm()" color="primary">Submit</button>
+    <button mat-button (click)="closeDialog()">Cancel</button>
+  </form>
+</div>
