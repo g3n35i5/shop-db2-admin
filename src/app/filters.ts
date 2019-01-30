@@ -21,7 +21,7 @@ export class LocalTimezone implements PipeTransform {
 
 @Pipe({ name: 'customTimestamp' })
 export class CustomTimestamp implements PipeTransform {
-  transform(input: string, format = 'DD.MM.YYYY - HH:mm:ss'): string {
+  transform(input: string, format = 'DD.MM.YYYY HH:mm:ss'): string {
     if (typeof(input) === 'undefined' || input === null) {
       return 'unknown';
     }
