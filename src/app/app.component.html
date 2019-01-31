@@ -8,7 +8,7 @@
     [mode]="(isHandset$ | async) ? 'over' : 'side'"
     [opened]="!(isHandset$ | async)"
     [class.mat-elevation-z8]="true">
-    <mat-toolbar color="primary" class="userinfo">
+    <mat-toolbar class="userinfo">
       <mat-toolbar-row>
         <avatar class="avatar" [background]="avatarColor" [size]="100" [name]="name" [displayType]="'circle'"></avatar>
       </mat-toolbar-row>
