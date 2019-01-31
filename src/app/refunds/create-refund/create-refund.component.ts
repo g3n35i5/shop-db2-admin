@@ -139,7 +139,7 @@ export class CreateRefundComponent implements OnInit {
         this.closeDialog();
       });
     } else {
-      this.snackbar.openSnackBar('The form is invalid.', '', 'error');
+      this.snackbar.openSnackBar('The form is invalid.');
     }
   }
 

@@ -66,7 +66,7 @@ export class EditTagComponent implements OnInit {
         this.closeDialog(true);
       });
     } else {
-      this.snackbar.openSnackBar('The form is invalid.', '', 'error');
+      this.snackbar.openSnackBar('The form is invalid.');
     }
   }
 

@@ -2,8 +2,6 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 /** Material design icons. */
 @import "~material-design-icons/iconfont/material-icons.css";
-/** Roboto font. */
-@import '~roboto-fontface/css/roboto/roboto-fontface.css';
 
 @import '~@angular/material/theming';
 
@@ -17,12 +15,8 @@
   @include angular-material-theme($dark-theme);
 }
 
-$custom_red: #C62828;
-$custom_green: #4CAF50;
-$custom_cyan: #00B0FF;
 
 body {
-  font-family: Roboto, Helvetica, Arial, sans-serif;
   margin: 0;
 }
 
@@ -36,32 +30,6 @@ table {
 
 .fill-remaining-space {
   flex: 1 1 auto;
-}
-
-.error-snackbar {
-  background: $custom_red;
-  color: #ffffff;
-  text-align: center;
-}
-
-.info-snackbar {
-  background: $custom_cyan;
-  color: #212121;
-  text-align: center;
-}
-
-.success-snackbar {
-  background: $custom_green;
-  color: #ffffff;
-  text-align: center;
-}
-
-.red-icon {
-  color: $custom_red;
-}
-
-.green-icon {
-  color: $custom_green;
 }
 
 .center-card {

@@ -189,7 +189,7 @@ export class EditproductComponent implements OnInit {
       // Check number of files (only one allowed)
       const countFiles = event.target.files.length;
       if (countFiles > 1 || countFiles == 0) {
-        this.snackbar.openSnackBar('Image is not valid', '', 'error');
+        this.snackbar.openSnackBar('Image is not valid');
         return;
       }
 
@@ -200,7 +200,7 @@ export class EditproductComponent implements OnInit {
 
       // Check extension
       if (extension !== 'png') {
-        this.snackbar.openSnackBar('Image must be a png file', '', 'error');
+        this.snackbar.openSnackBar('Image must be a png file');
         return;
       }
 
@@ -208,7 +208,7 @@ export class EditproductComponent implements OnInit {
       reader.readAsDataURL(file);
 
       reader.onerror = () => {
-        this.snackbar.openSnackBar('Could not read image', '', 'error');
+        this.snackbar.openSnackBar('Could not read image');
         return;
       };
 
@@ -218,7 +218,7 @@ export class EditproductComponent implements OnInit {
         const img = new Image;
         img.src = reader.result.toString();
         if (img.height !== img.width) {
-          this.snackbar.openSnackBar('The image must be quadratic', '', 'error');
+          this.snackbar.openSnackBar('The image must be quadratic');
           return;
         }
         this.uploadImageData = {
@@ -229,7 +229,7 @@ export class EditproductComponent implements OnInit {
         productImageHolder.setAttribute('src', reader.result.toString());
       };
     } else {
-      this.snackbar.openSnackBar('Image is not valid', '', 'error');
+      this.snackbar.openSnackBar('Image is not valid');
       return;
     }
   }
@@ -255,7 +255,7 @@ export class EditproductComponent implements OnInit {
           updateData[key] = value;
         }
       } else {
-        this.snackbar.openSnackBar('Invalid form data', '', 'error');
+        this.snackbar.openSnackBar('Invalid form data');
         return;
       }
     }
@@ -265,7 +265,7 @@ export class EditproductComponent implements OnInit {
         this.closeDialog(true);
       });
     } else {
-      this.snackbar.openSnackBar('Nothing has changed', '', 'info');
+      this.snackbar.openSnackBar('Nothing has changed');
       this.closeDialog(false);
 
     }

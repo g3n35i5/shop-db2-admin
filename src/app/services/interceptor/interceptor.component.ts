@@ -26,7 +26,7 @@ export class InterceptorComponent implements HttpInterceptor {
           /** Only those answers are to be opened as snackbar which also
               have a message in their body. */
           if (event.body.hasOwnProperty('message')) {
-            this.snackbar.openSnackBar(event.body['message'], '', 'success');
+            this.snackbar.openSnackBar(event.body['message']);
           }
         }
       }, error => {
@@ -36,7 +36,7 @@ export class InterceptorComponent implements HttpInterceptor {
           this.router.navigate(['/offline']);
         /** Open a snackbar with the error message.*/
         } else {
-          this.snackbar.openSnackBar(error.error.message, '', error.error.result);
+          this.snackbar.openSnackBar(error.error.message);
         }
       })
     );

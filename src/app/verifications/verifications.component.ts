@@ -45,7 +45,7 @@ export class VerificationsComponent implements OnInit {
   /** Verify a user. */
   verifyUser(user) {
     if (user['rankID'] === -1 ) {
-      this.snackbar.openSnackBar('Select a rank for the user', '', 'error');
+      this.snackbar.openSnackBar('Select a rank for the user');
     } else {
       this.dataService.verifyUser(user.id, user['rankID']).subscribe(() => {
         this.loadData();

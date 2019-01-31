@@ -20,12 +20,10 @@ interface User {
 export class CreatePayoffComponent implements OnInit {
 
   public loading: boolean;
-  userControl = new FormControl();
   form: FormGroup;
   public minCommentLength = 4;
   public maxCommentLength = 64;
   private formSubmitAttempt: boolean;
-  public filteredUsers: Observable<User[]>;
 
   constructor(
     private dataService: DataService,
@@ -88,7 +86,7 @@ export class CreatePayoffComponent implements OnInit {
         this.closeDialog();
       });
     } else {
-      this.snackbar.openSnackBar('The form is invalid.', '', 'error');
+      this.snackbar.openSnackBar('The form is invalid.');
     }
   }
 

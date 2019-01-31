@@ -88,13 +88,13 @@ export class CreateReplenishmentComponent implements OnInit {
   submit(): void {
     // If the comment is invalid, display an error message.
     if (!(this.commentCtrl.valid)) {
-      this.snackbar.openSnackBar('Invalid comment', '', 'error');
+      this.snackbar.openSnackBar('Invalid comment');
       return;
     }
 
     // If there are no replenishments yet, display an error message.
     if (this.replenishmentList.length <= 0) {
-      this.snackbar.openSnackBar('Please enter at least one item', '', 'error');
+      this.snackbar.openSnackBar('Please enter at least one item');
       return;
     }
 
@@ -116,7 +116,7 @@ export class CreateReplenishmentComponent implements OnInit {
   addProduct() {
     // Only create a replenishment if all forms are valid.
     if (!(this.productCtrl.valid && this.amountCtrl.valid && this.totalPriceCtrl.valid)) {
-      this.snackbar.openSnackBar('One or more values are missing', '', 'error');
+      this.snackbar.openSnackBar('One or more values are missing');
       return;
     }
 
@@ -142,7 +142,7 @@ export class CreateReplenishmentComponent implements OnInit {
     // notification.
     for (const r of this.replenishmentList) {
       if (r.product_id === product.id) {
-        this.snackbar.openSnackBar('Product already exists', '', 'error');
+        this.snackbar.openSnackBar('Product already exists');
         return;
       }
     }

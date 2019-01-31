@@ -178,7 +178,7 @@ export class CreateDepositComponent implements OnInit {
         this.closeDialog();
       });
     } else {
-      this.snackbar.openSnackBar('The form is invalid.', '', 'error');
+      this.snackbar.openSnackBar('The form is invalid.');
     }
   }
 
