@@ -1,16 +1,17 @@
 <app-loading *ngIf="loading"></app-loading>
 <div *ngIf="!loading">
   <div *ngIf="showTable">
-    <button mat-fab class="addButton" color="accent"
-            (click)="createReplenishment()">
+    <button mat-fab class="addButton" color="primary" (click)="createReplenishment()">
       <mat-icon>add</mat-icon>
     </button>
-    <mat-paginator [pageSizeOptions]="itemsPerPage" [pageSize]="numItems"
-                   showFirstLastButtons></mat-paginator>
+
     <mat-form-field class="full-width-input">
       <input matInput (keyup)="applyFilter($event.target.value)"
              placeholder="Search in replenishments">
     </mat-form-field>
+
+    <mat-paginator [pageSizeOptions]="itemsPerPage" [pageSize]="numItems" showFirstLastButtons></mat-paginator>
+
     <table mat-table [dataSource]="dataSource" matSort matSortActive="id"
            matSortDirection="desc" class="mat-elevation-z8">
 

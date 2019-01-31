@@ -2,15 +2,17 @@
 <div *ngIf="!loading">
   <!-- Scroll to top button -->
   <div *ngIf="showTable">
-    <button mat-fab class="addButton" color="accent" (click)="createTag()">
+    <button mat-fab class="addButton" color="primary" (click)="createTag()">
       <mat-icon>add</mat-icon>
     </button>
-    <mat-paginator [pageSizeOptions]="itemsPerPage" [pageSize]="numItems"
-                   showFirstLastButtons></mat-paginator>
+
     <mat-form-field class="full-width-input">
       <input matInput (keyup)="applyFilter($event.target.value)"
              placeholder="Search in tags">
     </mat-form-field>
+
+    <mat-paginator [pageSizeOptions]="itemsPerPage" [pageSize]="numItems" showFirstLastButtons></mat-paginator>
+
     <table mat-table [dataSource]="dataSource" matSort matSortActive="id"
            matSortDirection="asc" class="mat-elevation-z8">
 

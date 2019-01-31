@@ -1,13 +1,16 @@
 <app-loading *ngIf="loading"></app-loading>
 <div *ngIf="!loading">
   <div *ngIf="showTable">
-    <button mat-fab class="addButton" color="accent" (click)="createProduct()">
+    <button mat-fab class="addButton" color="primary" (click)="createProduct()">
       <mat-icon>add</mat-icon>
     </button>
-    <mat-paginator [pageSizeOptions]="itemsPerPage" [pageSize]="numItems" showFirstLastButtons></mat-paginator>
+
     <mat-form-field class="full-width-input">
       <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search in products">
     </mat-form-field>
+
+    <mat-paginator [pageSizeOptions]="itemsPerPage" [pageSize]="numItems" showFirstLastButtons></mat-paginator>
+
     <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
 
       <!-- ID Column -->

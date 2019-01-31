@@ -4,10 +4,13 @@
     <button mat-fab class="addButton" color="primary" (click)="createRefund()">
       <mat-icon>add</mat-icon>
     </button>
-    <mat-paginator [pageSizeOptions]="itemsPerPage" [pageSize]="numItems" showFirstLastButtons></mat-paginator>
+
     <mat-form-field class="full-width-input">
       <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search in refunds">
     </mat-form-field>
+
+    <mat-paginator [pageSizeOptions]="itemsPerPage" [pageSize]="numItems" showFirstLastButtons></mat-paginator>
+
     <table mat-table [dataSource]="dataSource" matSort matSortActive="id" matSortDirection="desc" class="mat-elevation-z8">
 
       <!-- ID Column -->
