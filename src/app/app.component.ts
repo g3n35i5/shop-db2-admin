@@ -22,6 +22,7 @@ export class AppComponent implements OnInit {
     private breakpointObserver: BreakpointObserver,
     private authService: AuthService) { }
 
+  public darkTheme = true;
   public name: string;
   public email: string;
   public avatarColor = '#454545';
@@ -96,6 +97,10 @@ export class AppComponent implements OnInit {
   isActiveRoute(route) {
     console.log(this.router.url);
     return this.router.url === route.link;
+  }
+
+  toggleDarkTheme(): void {
+    this.darkTheme = !this.darkTheme;
   }
 
   /** Logout function. */

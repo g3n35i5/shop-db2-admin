@@ -1,5 +1,5 @@
-<mat-sidenav-container class="sidenav-container">
-  <mat-sidenav
+<mat-drawer-container class="sidenav-container" [class.dark-theme]="darkTheme">
+  <mat-drawer
     *ngIf="(isLoggedIn$ | async)"
     #drawer
     class="sidenav"
@@ -28,9 +28,17 @@
         <mat-icon mat-list-icon>exit_to_app</mat-icon>
         <h4 mat-line>Logout</h4>
       </a>
+      <a mat-list-item (click)="toggleDarkTheme()">
+        <mat-icon mat-list-icon>
+          {{ darkTheme ? 'check_circle' : 'radio_button_unchecked' }}
+        </mat-icon>
+        <h4 mat-line>
+          {{ darkTheme ? 'Light' : 'Dark' }} mode
+        </h4>
+      </a>
     </mat-nav-list>
-  </mat-sidenav>
-  <mat-sidenav-content>
+  </mat-drawer>
+  <mat-drawer-content class="mat-app-background">
     <mat-toolbar color="primary">
       <button
         type="button"
@@ -45,5 +53,5 @@
     <div class="content">
       <router-outlet></router-outlet>
     </div>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+  </mat-drawer-content>
+</mat-drawer-container>

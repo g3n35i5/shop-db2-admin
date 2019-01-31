@@ -5,6 +5,18 @@
 /** Roboto font. */
 @import '~roboto-fontface/css/roboto/roboto-fontface.css';
 
+@import '~@angular/material/theming';
+
+@include mat-core();
+.dark-theme {
+  $dark-primary: mat-palette($mat-pink, 700, 500, 900);
+  $dark-accent:  mat-palette($mat-blue-grey, A200, A100, A400);
+  $dark-warn:    mat-palette($mat-deep-orange);
+  $dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
+
+  @include angular-material-theme($dark-theme);
+}
+
 $custom_red: #C62828;
 $custom_green: #4CAF50;
 $custom_cyan: #00B0FF;
