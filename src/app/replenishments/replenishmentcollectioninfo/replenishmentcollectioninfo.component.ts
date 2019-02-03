@@ -49,6 +49,8 @@ export class ReplenishmentcollectioninfoComponent implements OnInit {
     const data = { revoked: !item.revoked };
     this.dataService.toggleReplenishmentRevoke(item.id, data).subscribe(() => {
       this.loadData();
+    }, () => {
+      this.disableInteraction = false;
     });
   }
 

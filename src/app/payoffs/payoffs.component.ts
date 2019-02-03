@@ -53,6 +53,8 @@ export class PayoffsComponent implements OnInit {
     const data = { revoked: !payoff.revoked };
     this.dataService.togglePayoffRevoke(payoff.id, data).subscribe(() => {
       this.loadData();
+    }, () => {
+      this.disableInteraction = false;
     });
   }
 

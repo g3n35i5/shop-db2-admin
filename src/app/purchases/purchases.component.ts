@@ -45,6 +45,8 @@ export class PurchasesComponent implements OnInit {
     const data = { revoked: !purchase.revoked };
     this.dataService.togglePurchaseRevoke(purchase.id, data).subscribe(() => {
       this.loadData();
+    }, () => {
+      this.disableInteraction = false;
     });
   }
 

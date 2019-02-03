@@ -54,6 +54,8 @@ export class RefundsComponent implements OnInit {
     const data = { revoked: !refund.revoked };
     this.dataService.toggleRefundRevoke(refund.id, data).subscribe(() => {
       this.loadData();
+    }, () => {
+      this.disableInteraction = false;
     });
   }
 

@@ -54,6 +54,8 @@ export class DepositsComponent implements OnInit {
     const data = { revoked: !deposit.revoked };
     this.dataService.toggleDepositRevoke(deposit.id, data).subscribe(() => {
       this.loadData();
+    }, () => {
+      this.disableInteraction = false;
     });
   }
 
