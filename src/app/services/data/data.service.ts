@@ -1,6 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
+const removeEmpty = (obj) => {
+  Object.keys(obj).forEach(key => {
+    if (obj[key] && typeof obj[key] === 'object') {
+      removeEmpty(obj[key]);
+    } else if (obj[key] == null) {
+      delete obj[key];
+    }
+  });
+};
+
 @Injectable()
 export class DataService {
   constructor(public http: HttpClient) { }
@@ -197,6 +207,12 @@ export class DataService {
     const header = {
       token: token
     };
+
+    /** Delete all null or empty values from the data object. **/
+    if (data !== null) {
+      removeEmpty(data);
+    }
+
     /** Switch case for the different request methods. */
     if (type === 'GET') {
       return this.http.get('/api/' + route, { headers: header });
