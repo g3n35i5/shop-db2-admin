@@ -86,7 +86,6 @@ export class DataService {
 
   public removeTagAssignment(productID: number, tagID: number) {
     const data = { product_id: productID, tag_id: tagID };
-    console.log(data);
     return this.postData('tagassignment/remove', data);
   }
 

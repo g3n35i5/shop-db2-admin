@@ -134,7 +134,6 @@ export class CreateRefundComponent implements OnInit {
   /** Submits the refund form. */
   submitForm() {
     if (this.form.valid) {
-      console.log('Submitting form');
       this.dataService.createRefund(this.form.value).subscribe(() => {
         this.closeDialog();
       });

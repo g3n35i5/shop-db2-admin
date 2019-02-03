@@ -173,7 +173,6 @@ export class CreateDepositComponent implements OnInit {
   /** Submits the deposit form. */
   submitForm() {
     if (this.form.valid) {
-      console.log('Submitting form');
       this.dataService.createDeposit(this.form.value).subscribe(() => {
         this.closeDialog();
       });

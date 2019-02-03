@@ -81,7 +81,6 @@ export class CreatePayoffComponent implements OnInit {
   /** Submits the payoff form. */
   submitForm() {
     if (this.form.valid) {
-      console.log('Submitting form');
       this.dataService.createPayoff(this.form.value).subscribe(() => {
         this.closeDialog();
       });

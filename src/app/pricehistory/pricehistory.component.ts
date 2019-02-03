@@ -99,7 +99,6 @@ export class PricehistoryComponent implements OnInit {
 
   getMaxDate(): Date {
     const dates = this.data.map(d => Date.parse(d.t));
-    console.log(dates);
     return new Date();
   }
 
