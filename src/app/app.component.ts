@@ -17,7 +17,7 @@ export class AppComponent implements OnInit {
       map(result => result.matches)
     );
 
-  constructor(
+  constructor (
     private router: Router,
     private breakpointObserver: BreakpointObserver,
     private authService: AuthService) { }
@@ -91,12 +91,6 @@ export class AppComponent implements OnInit {
     /** Set the email address in order to generate the avatar.*/
     this.name = currentUser.firstname + ' ' + currentUser.lastname;
     this.email = currentUser.email;
-  }
-
-  /** Checks for each element of the Navbar whether it is active or not.*/
-  isActiveRoute(route) {
-    console.log(this.router.url);
-    return this.router.url === route.link;
   }
 
   toggleDarkTheme(): void {
