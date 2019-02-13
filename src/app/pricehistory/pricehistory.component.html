@@ -1,25 +1,56 @@
 <app-loading *ngIf="loading"></app-loading>
 <div *ngIf="!loading">
   <mat-card>
-    <mat-form-field>
-      <input matInput [matDatepicker]="picker" [min]="minDate" [max]="maxDate" placeholder="Start date">
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
-  </mat-card>
-
-  <mat-card class="mt-1">
     <mat-card-header>
-      <h1 class="mat-h1">Pricehistory of {{ product.name }}</h1>
+      <mat-card-title>Pricehistory of {{ product.name }}</mat-card-title>
     </mat-card-header>
-    <mat-card-content class="productpricechart">
-      <canvas
+    <mat-card-content>
+      <div fxLayout="row" class="datecontainer">
+        <div>
+          <p>Display price between</p>
+        </div>
+        <div>
+          <mat-form-field>
+            <input
+              matInput [min]="minDate" [max]="maxDate"
+              [matDatepicker]="startDP" placeholder="Select the start date"
+              [formControl]="startDate">
+            <mat-datepicker-toggle matSuffix [for]="startDP"></mat-datepicker-toggle>
+            <mat-datepicker #startDP></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div>
+          <p>and</p>
+        </div>
+        <div>
+          <mat-form-field>
+            <input
+              matInput [min]="minDate"  [max]="maxDate"
+              [matDatepicker]="endDP" placeholder="Select the end date"
+              [formControl]="endDate">
+            <mat-datepicker-toggle matSuffix [for]="endDP"></mat-datepicker-toggle>
+            <mat-datepicker #endDP></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div>
+          <button mat-flat-button color="primary" (click)="applyTimeRange()">
+            Submit
+          </button>
+        </div>
+      </div>
+      <div class="productpricechart" *ngIf="showChart">
+        <canvas
           baseChart
           [chartType]="'line'"
           [datasets]="chartData"
-          [labels]="chartLabels"
           [options]="chartOptions">
-      </canvas>
+        </canvas>
+      </div>
+      <div *ngIf="!showChart">
+        <div class="center-card">
+          <h1 class="mat-h1">No entries found.</h1>
+        </div>
+      </div>
     </mat-card-content>
   </mat-card>
 </div>

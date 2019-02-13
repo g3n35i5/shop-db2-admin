@@ -73,6 +73,10 @@ export class DataService {
     return this.getData('products/' + id.toString());
   }
 
+  public getProductPricehistory(id: number) {
+    return this.getData('products/' + id.toString() + '/pricehistory');
+  }
+
   public createProduct(data: any) {
     return this.postData('products', data);
   }

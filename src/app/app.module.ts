@@ -46,7 +46,7 @@ import { RefundsComponent } from './refunds/refunds.component';
 import { CreateRefundComponent } from './refunds/create-refund/create-refund.component';
 import { PayoffsComponent } from './payoffs/payoffs.component';
 import { CreatePayoffComponent } from './payoffs/create-payoff/create-payoff.component';
-import {OverlayContainer} from '@angular/cdk/overlay';
+import { OverlayContainer } from '@angular/cdk/overlay';
 
 /** Returns the token from the local storage. Required for the JWT tool. */
 export function tokenGetter() {
