@@ -1,25 +1,18 @@
 <app-loading *ngIf="loading"></app-loading>
 <div *ngIf="!loading">
   <div class="container"
-       fxLayout="row"
-       fxLayout.sm="column"
-       fxLayoutGap="0.5%"
-       fxLayoutWrap>
-    <div fxFlex="25%" *ngFor="let tile of tiles">
-      <mat-card [style.background]="tile.color" class="dashboard-card">
-        <mat-card-content>
-          <div fxLayout="row" fxLayoutWrap>
-            <div fxFlex=25%>
-              <mat-icon mat-list-icon class=""> {{ tile.icon }}</mat-icon>
-            </div>
-            <div fxFlex=75% class="text-right">
-              <section class="mat-typography">
-                <h1>{{ tile.number }}</h1>
-                <h2>{{ tile.title }}</h2>
-              </section>
-            </div>
+       fxLayout="row wrap"
+       fxLayoutAlign="center center"
+       fxLayoutGap="0.5rem">
+    <div fxFlex.lt-md="100%" fxFlex="24%" *ngFor="let tile of tiles">
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <div mat-card-avatar>
+            <mat-icon>{{ tile.icon }}</mat-icon>
           </div>
-        </mat-card-content>
+          <mat-card-title class="title">{{ tile.title }}</mat-card-title>
+        </mat-card-header>
+
         <mat-card-actions>
           <button mat-button [routerLink]="tile.link">Details</button>
         </mat-card-actions>
@@ -31,7 +24,7 @@
     <mat-card-header>
       <h1 class="mat-h1">Financial overview</h1>
     </mat-card-header>
-    <mat-card-content class="productpricechart">
+    <mat-card-content class="chart">
       <canvas
         baseChart
         [chartType]="'bar'"

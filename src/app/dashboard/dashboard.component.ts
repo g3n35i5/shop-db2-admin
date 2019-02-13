@@ -23,6 +23,9 @@ export class DashboardComponent implements OnInit {
   private deposits;
   private purchases;
   private products;
+  private replenishments;
+  private refunds;
+  private payoffs;
   private financial_overview;
   public chartData: any = [];
 
@@ -71,7 +74,7 @@ export class DashboardComponent implements OnInit {
     },
     {
       title: 'Products',
-      icon: 'fastfood',
+      icon: 'restaurant_menu',
       number: null,
       color: '#8BC34A',
       link: '/products'
@@ -85,10 +88,31 @@ export class DashboardComponent implements OnInit {
     },
     {
       title: 'Deposits',
-      icon: 'money',
+      icon: 'attach_money',
       number: null,
       color: '#E91E63',
       link: '/deposits'
+    },
+    {
+      title: 'Replenishments',
+      icon: 'shopping_basket',
+      number: null,
+      color: '#E91E63',
+      link: '/replenishments'
+    },
+    {
+      title: 'Refunds',
+      icon: 'settings_backup_restore',
+      number: null,
+      color: '#E91E63',
+      link: '/refunds'
+    },
+    {
+      title: 'Payoffs',
+      icon: 'euro_symbol',
+      number: null,
+      color: '#E91E63',
+      link: '/payoffs'
     }
   ];
 
@@ -101,6 +125,9 @@ export class DashboardComponent implements OnInit {
     this.tiles[1].number = this.products.length;
     this.tiles[2].number = this.purchases.length;
     this.tiles[3].number = this.deposits.length;
+    this.tiles[4].number = this.replenishments.length;
+    this.tiles[5].number = this.refunds.length;
+    this.tiles[6].number = this.payoffs.length;
     const expenses = this.financial_overview['expenses']['items'];
     const incomes = this.financial_overview['incomes']['items'];
 
@@ -120,14 +147,20 @@ export class DashboardComponent implements OnInit {
     const deposits = this.dataService.getDeposits();
     const purchases = this.dataService.getPurchases();
     const products = this.dataService.getProducts();
+    const replenishments = this.dataService.getReplenishmentCollections();
+    const refunds = this.dataService.getRefunds();
+    const payoffs = this.dataService.getPayoffs();
     const financial_overview = this.dataService.getFinancialOverview();
-    forkJoin([users, deposits, purchases, products, financial_overview])
+    forkJoin([users, deposits, purchases, products, replenishments, refunds, payoffs, financial_overview])
       .subscribe(results => {
       this.users = results[0]['users'];
       this.deposits = results[1]['deposits'];
       this.purchases = results[2]['purchases'];
       this.products = results[3]['products'];
-      this.financial_overview = results[4]['financial_overview'];
+      this.replenishments = results[4]['replenishmentcollections'];
+      this.refunds = results[5]['refunds'];
+      this.payoffs = results[6]['payoffs'];
+      this.financial_overview = results[7]['financial_overview'];
       this.processingData();
     });
   }

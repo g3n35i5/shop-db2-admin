@@ -1,27 +1,19 @@
-.dashboard-card {
-  color: white;
-}
-
-.dashboard-card mat-icon {
-  font-size: 5rem;
-  padding-top: 10px;
-}
-
-.text-right {
-  text-align: right;
-}
-
-.dashboard-card h1 {
-  font-size: 3rem;
-}
-
-.dashboard-card h2 {
+div.mat-card-avatar > mat-icon {
+  display: inline-flex;
+  vertical-align: middle;
   font-size: 2rem;
 }
+.dashboard-card {
+  margin-top: 0.5rem;
+}
 
-.productpricechart {
-  width: 90%;
+.title {
+  margin-right: 0 !important;
+  margin-left: auto !important;
+}
+
+.chart {
+  width: 100%;
   margin: 0 auto;
   height: 400px;
 }
-
