@@ -10,16 +10,27 @@ import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { SnackbarService } from '../snackbar/snackbar.service';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable()
 export class InterceptorComponent implements HttpInterceptor {
   constructor(
     private snackbar: SnackbarService,
+    private authService: AuthService,
     private router: Router
   ) {}
 
   /** Intercept all HTTP requests. Open a snackbar on success or error.*/
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+
+    /**
+     * Check whether the token is valid. If its not, logout and redirect to
+     * the login page.
+     */
+    if (!this.authService.tokenValid()) {
+      this.authService.logout();
+    }
+
     return next.handle(request).pipe(
       tap(event => {
         if (event instanceof HttpResponse) {
