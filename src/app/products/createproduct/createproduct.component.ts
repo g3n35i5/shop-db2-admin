@@ -37,7 +37,7 @@ export class CreateProductComponent implements OnInit {
         Validators.minLength(2),
         Validators.maxLength(32)])],
       active: [true],
-      revokeable: [true],
+      revocable: [true],
       countable: [true]
     });
     this.loading = false;

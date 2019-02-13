@@ -6,6 +6,6 @@ export interface Product {
   imagename: string;
   name: string;
   price: number;
-  revokeable: boolean;
+  revocable: boolean;
   tags: number[];
 }
