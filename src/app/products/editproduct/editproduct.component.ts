@@ -89,7 +89,7 @@ export class EditproductComponent implements OnInit {
         Validators.maxLength(32)])],
       imagename: [this.editProduct.imagename],
       active: [this.editProduct.active],
-      revokeable: [this.editProduct.revokeable],
+      revocable: [this.editProduct.revocable],
       countable: [this.editProduct.countable]
     });
     this.loading = false;
@@ -130,12 +130,13 @@ export class EditproductComponent implements OnInit {
       }
     }
     if (tagID !== null) {
-      const index = this.allTags.indexOf(tag);
-      if (index >= 0) {
-        this.tags.splice(index, 1);
-      }
-
-      this.dataService.removeTagAssignment(this.product.id, tagID).subscribe();
+      this.dataService.removeTagAssignment(this.product.id, tagID).subscribe(() => {
+        const index = this.allTags.indexOf(tag);
+        if (index >= 0) {
+          this.tags.splice(index, 1);
+        }
+        }
+      );
     }
   }
 
