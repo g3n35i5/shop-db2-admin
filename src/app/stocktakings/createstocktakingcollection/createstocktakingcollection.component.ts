@@ -11,16 +11,37 @@ import {
   FormGroup,
   FormArray
 } from '@angular/forms';
-import {forkJoin, Observable} from 'rxjs';
-import {map, startWith} from 'rxjs/operators';
+import { forkJoin } from 'rxjs';
 import {SnackbarService} from '../../services/snackbar/snackbar.service';
 import {Product} from '../../interfaces/product';
-import {Stocktaking} from '../../interfaces/stocktaking';
+import * as moment from 'moment';
+import { MomentDateAdapter } from '@angular/material-moment-adapter';
+import {
+  DateAdapter,
+  MAT_DATE_FORMATS,
+  MAT_DATE_LOCALE
+} from '@angular/material/core';
+
+export const MY_FORMATS = {
+  parse: {
+    dateInput: 'LL',
+  },
+  display: {
+    dateInput: 'LL',
+    monthYearLabel: 'MMM YYYY',
+    dateA11yLabel: 'LL',
+    monthYearA11yLabel: 'MMMM YYYY',
+  },
+};
 
 @Component({
   selector: 'app-createstocktakingcollection',
   templateUrl: './createstocktakingcollection.component.html',
-  styleUrls: ['./createstocktakingcollection.component.scss']
+  styleUrls: ['./createstocktakingcollection.component.scss'],
+  providers: [
+  {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},
+  {provide: MAT_DATE_FORMATS, useValue: MY_FORMATS},
+]
 })
 
 export class CreateStocktakingCollectionComponent implements OnInit {
@@ -33,11 +54,17 @@ export class CreateStocktakingCollectionComponent implements OnInit {
     public dialogRef: MatDialogRef<CreateStocktakingCollectionComponent>
   ) {
     this.form = this.fb.group({
-      counts: this.fb.array([])
+      counts: this.fb.array([]),
+      time: ['', [Validators.required]],
+      date: [moment(), [Validators.required]]
     });
   }
 
   form: FormGroup;
+  // The maximum date is today.
+  public maxDate: moment.Moment = moment();
+
+  public timestamp = '';
 
   public loading: boolean;
   private products: Product[];
@@ -54,7 +81,7 @@ export class CreateStocktakingCollectionComponent implements OnInit {
       this.processingData();
     });
   }
-w
+
   processingData() {
     this.products = this.products.filter(product => product.active);
     const ctrl = <FormArray>this.form.controls.counts;
@@ -78,14 +105,37 @@ w
    */
   submit(): void {
     // If there are no replenishments yet, display an error message.
+
     if (this.form.invalid) {
       this.snackbar.openSnackBar('The form is invalid');
       return;
     }
 
-    const data = {stocktakings: this.form.value.counts};
+    const time = this.form.controls['time'].value.split(':');
+    const hour = Number(time[0]);
+    const minute = Number(time[1]);
+    const day = this.form.controls['date'].value.day();
+    const month = this.form.controls['date'].value.month();
+    const year = this.form.controls['date'].value.year();
 
-    console.log(data);
+    const timestamp = moment();
+    timestamp.set('day', day);
+    timestamp.set('month', month);
+    timestamp.set('year', year);
+    timestamp.set('hour', hour);
+    timestamp.set('minute', minute);
+    timestamp.set('second', 0);
+    timestamp.set('millisecond', 0);
+
+    if (timestamp > moment()) {
+      this.snackbar.openSnackBar('Invalid date/time');
+      return;
+    }
+
+    const data = {
+      stocktakings: this.form.value.counts,
+      timestamp: Number(timestamp.valueOf() / 1000)
+    };
 
     // Send it to the API and close the dialog on success.
     this.dataService.createStocktakingCollection(data).subscribe(() => {
@@ -93,25 +143,6 @@ w
     });
   }
 
-  /**
-   * This function gets called when the user presses the 'cancel' button.
-   * If there is no data at all (empty replenishment list and no comment),
-   * the dialog can be closed without any data loss.
-   * Otherwise, the dialog should only be able to be closed after the user has
-   * confirmed that he really wants to. For this there is the internal variable
-   * 'closeAttempt'. Only if the user presses close twice, the dialog should
-   * be closed.
-   */
-  // close(): void {
-  //   if (this.replenishmentList.length === 0 && this.commentCtrl.untouched) {
-  //     this.closeDialog(false);
-  //   }
-  //   if (this.closeAttempt) {
-  //     this.closeDialog(false);
-  //     return;
-  //   }
-  //   this.closeAttempt = true;
-  // }
 
   /**
    * This method closes the dialog. When the parameter 'reload' is true, the
@@ -132,13 +163,4 @@ w
   getProductByID(id: number): Product {
     return this.products.find(p => p.id === id);
   }
-
-  /**
-   * This method filters the products by a search string.
-   * @param value is the search value.
-   */
-  // private _filterStates(value: string): Product[] {
-  //   const filterValue = value.toLowerCase();
-  //   return this.products.filter(p => p.name.toLowerCase().indexOf(filterValue) >= 0);
-  // }
 }

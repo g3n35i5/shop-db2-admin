@@ -107,7 +107,6 @@ export class StocktakingsComponent implements OnInit {
       this.showTable = false;
     }
 
-    console.log(this.stocktakingcollections)
     this.loading = false;
     this.disableInteraction = false;
   }

@@ -11,6 +11,28 @@
     </p>
 
     <form [formGroup]="form">
+
+      <div fxLayout="row" fxLayoutAlign="space-around" fxLayoutGap="2rem">
+        <mat-form-field fxFlex>
+          <input
+            matInput [max]="maxDate"
+            [matDatepicker]="datepicker" placeholder="Date"
+            formControlName="date">
+          <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+          <mat-datepicker #datepicker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field fxFlex>
+          <input
+            matInput
+            placeholder="Time"
+            [ngxTimepicker]="timepicker"
+            formControlName="time"
+            [format]="24" readonly>
+          <ngx-material-timepicker #timepicker></ngx-material-timepicker>
+        </mat-form-field>
+      </div>
+
       <mat-list formArrayName="counts">
         <mat-list-item *ngFor="let p of form.controls.counts.controls; let i = index" [formGroupName]="i">
           <h3 matLine>{{getProductByID(p.controls.product_id.value).name}}</h3>
@@ -29,6 +51,7 @@
   </div>
 
   <div mat-dialog-actions>
-    <button mat-button (click)="close()">Cancel</button>
+    <button mat-button (click)="closeDialog()">Cancel</button>
     <button mat-button [disabled]="form.invalid" color="primary" (click)="submit()">Submit</button>
   </div>
+</div>

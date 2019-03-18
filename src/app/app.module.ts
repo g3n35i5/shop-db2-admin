@@ -10,6 +10,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LayoutModule } from '@angular/cdk/layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ChartsModule } from 'ng2-charts';
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 
 import { CustomCurrency } from './filters';
 import { CustomTimestamp } from './filters';
@@ -125,6 +126,7 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     FlexLayoutModule,
     ChartsModule,
+    NgxMaterialTimepickerModule,
     RouterModule.forRoot(appRoutes),
     JwtModule.forRoot({
       config: {
