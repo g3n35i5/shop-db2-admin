@@ -11,14 +11,6 @@ export class CustomCurrency implements PipeTransform {
   }
 }
 
-@Pipe({ name: 'localTimezone' })
-export class LocalTimezone implements PipeTransform {
-  transform(input: string): string {
-    const date = moment(new Date(input));
-    return date.tz('Europe/Berlin').format('DD.MM.YYYY HH:mm:ss');
-  }
-}
-
 @Pipe({ name: 'customTimestamp' })
 export class CustomTimestamp implements PipeTransform {
   transform(input: string, format = 'ddd, DD MMM YYYY HH:mm'): string {

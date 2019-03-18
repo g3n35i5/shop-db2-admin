@@ -37,7 +37,7 @@ export class CreateReplenishmentComponent implements OnInit {
   public minCommentLength = 4;
   public maxCommentLength = 64;
 
-  private closeAttempt = false;
+  public closeAttempt = false;
 
   commentCtrl = new FormControl(
     '',
