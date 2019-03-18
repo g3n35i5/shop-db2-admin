@@ -84,6 +84,8 @@ export class CreateStocktakingCollectionComponent implements OnInit {
 
   processingData() {
     this.products = this.products.filter(product => product.active);
+    this.products = this.products.filter(product => product.countable);
+    this.products.sort((a, b) => a.name.localeCompare(b.name));
     const ctrl = <FormArray>this.form.controls.counts;
     this.products.forEach(product => {
       ctrl.push(this.fb.group({
