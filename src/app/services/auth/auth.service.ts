@@ -18,7 +18,6 @@ export class AuthService {
     return this.loggedIn.asObservable();
   }
 
-
   tokenValid() {
     const token = localStorage.getItem('token');
     if (typeof token === 'undefined' || token === null) { return false; }
