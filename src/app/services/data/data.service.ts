@@ -176,6 +176,26 @@ export class DataService {
     return this.postData('payoffs', data);
   }
 
+  public getStocktakingCollections() {
+    return this.getData('stocktakingcollections');
+  }
+
+  public getStocktakingCollection(id: number) {
+    return this.getData('stocktakingcollections/' + id.toString());
+  }
+
+  public createStocktakingCollection(data: any) {
+    return this.postData('stocktakingcollections/', data);
+  }
+
+  public toggleStocktakingCollectionRevoke(id: number, data: any) {
+    return this.putData('stocktakingcollections/' + id.toString(), data);
+  }
+
+  public updateStocktaking(id: number, data: any) {
+    return this.putData('stocktakings/' + id.toString(), data);
+  }
+
   public upload(data) {
     return this.postData('upload', data);
   }

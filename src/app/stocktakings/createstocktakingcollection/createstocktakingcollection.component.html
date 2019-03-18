@@ -1,0 +1,34 @@
+<mat-spinner *ngIf="loading" style="margin:0 auto;"
+             mode="indeterminate"></mat-spinner>
+<div *ngIf="!loading">
+  <h1 mat-dialog-title>Create a new stocktaking</h1>
+  <div mat-dialog-content>
+    <p>
+      Enter the number of all currently available products here. Of course
+      you have to make sure that no products are purchased during the count!
+      If you want to take a product off the market, you can do this here
+      when it is used up (count is 0). Then select the checkbox "Set inactive".
+    </p>
+
+    <form [formGroup]="form">
+      <mat-list formArrayName="counts">
+        <mat-list-item *ngFor="let p of form.controls.counts.controls; let i = index" [formGroupName]="i">
+          <h3 matLine>{{getProductByID(p.controls.product_id.value).name}}</h3>
+          <p matLine>{{getProductByID(p.controls.product_id.value).price | customCurrency | currency: 'EUR'}}</p>
+          <span class="fill-remaining-space"></span>
+          <mat-form-field class="full-width-input">
+            <input matInput formControlName="count" type="number" required>
+            <mat-error *ngIf="p.invalid">Invalid count</mat-error>
+          </mat-form-field>
+          <span class="fill-remaining-space"></span>
+          <mat-checkbox [disabled]="checkboxDisabled(p)" formControlName="set_inactive">Set inactive</mat-checkbox>
+        </mat-list-item>
+      </mat-list>
+    </form>
+    <mat-divider></mat-divider>
+  </div>
+
+  <div mat-dialog-actions>
+    <button mat-button (click)="close()">Cancel</button>
+    <button mat-button [disabled]="form.invalid" color="primary" (click)="submit()">Submit</button>
+  </div>

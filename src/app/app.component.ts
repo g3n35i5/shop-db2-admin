@@ -73,6 +73,11 @@ export class AppComponent implements OnInit {
       link: 'payoffs'
     },
     {
+      icon: 'format_list_numbered',
+      title: 'Stocktakings',
+      link: 'stocktakings'
+    },
+    {
       icon: 'verified_user',
       title: 'Verifications',
       link: 'verifications'

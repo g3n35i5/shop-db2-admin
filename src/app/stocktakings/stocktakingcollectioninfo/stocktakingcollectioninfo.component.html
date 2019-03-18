@@ -1,0 +1,17 @@
+<mat-spinner *ngIf="loading"style="margin:0 auto;" mode="indeterminate"></mat-spinner>
+<div *ngIf="!loading" class="mat-typography">
+  <h1 mat-dialog-title>
+    Stocktaking
+    <span class="mat-small">
+      {{ stocktakingcollection.timestamp | customTimestamp }}
+    </span>
+  </h1>
+  <mat-list>
+    <mat-list-item *ngFor="let stocktaking of stocktakingcollection.stocktakings">
+      <h3 matLine>{{getProductByID(stocktaking.product_id).name}}</h3>
+      <p matLine>{{getProductByID(stocktaking.product_id).price | customCurrency | currency: 'EUR'}}</p>
+      <span class="fill-remaining-space"></span>
+      {{stocktaking.count}}
+    </mat-list-item>
+  </mat-list>
+</div>

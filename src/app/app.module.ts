@@ -47,6 +47,9 @@ import { CreateRefundComponent } from './refunds/create-refund/create-refund.com
 import { PayoffsComponent } from './payoffs/payoffs.component';
 import { CreatePayoffComponent } from './payoffs/create-payoff/create-payoff.component';
 import { OverlayContainer } from '@angular/cdk/overlay';
+import { StocktakingsComponent } from './stocktakings/stocktakings.component';
+import { CreateStocktakingCollectionComponent } from './stocktakings/createstocktakingcollection/createstocktakingcollection.component';
+import { StocktakingcollectioninfoComponent } from './stocktakings/stocktakingcollectioninfo/stocktakingcollectioninfo.component';
 
 /** Returns the token from the local storage. Required for the JWT tool. */
 export function tokenGetter() {
@@ -67,6 +70,7 @@ const appRoutes: Routes = [
   { path: 'deposits', component: DepositsComponent, canActivate: [AuthGuard] },
   { path: 'refunds', component: RefundsComponent, canActivate: [AuthGuard] },
   { path: 'payoffs', component: PayoffsComponent, canActivate: [AuthGuard] },
+  { path: 'stocktakings', component: StocktakingsComponent, canActivate: [AuthGuard] },
   { path: 'verifications', component: VerificationsComponent, canActivate: [AuthGuard] },
   { path: '',
     redirectTo: '/dashboard',
@@ -105,7 +109,10 @@ const appRoutes: Routes = [
     RefundsComponent,
     CreateRefundComponent,
     PayoffsComponent,
-    CreatePayoffComponent
+    CreatePayoffComponent,
+    StocktakingsComponent,
+    CreateStocktakingCollectionComponent,
+    StocktakingcollectioninfoComponent
   ],
   imports: [
     BrowserModule,
@@ -150,6 +157,8 @@ const appRoutes: Routes = [
     ReplenishmentcollectioninfoComponent,
     CreateRefundComponent,
     CreatePayoffComponent,
+    CreateStocktakingCollectionComponent,
+    StocktakingcollectioninfoComponent
   ]
 })
 export class AppModule {
