@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
 
 const removeEmpty = (obj) => {
   Object.keys(obj).forEach(key => {
@@ -13,6 +14,9 @@ const removeEmpty = (obj) => {
 
 @Injectable()
 export class DataService {
+
+  apiURL = environment.apiURL;
+
   constructor(public http: HttpClient) { }
 
   public login(id: number, password: string) {
@@ -200,7 +204,7 @@ export class DataService {
     /** Check if the backend is available. If this is not the case,
         the HTTP_INTERCEPTOR will redirect you to the offline page
         and cancel the request. */
-    this.http.get('/api/');
+    this.http.get(this.apiURL);
     /** Get the access token from the local storage. */
     let token = localStorage.getItem('token');
     /** If the token does not exist, replace it with an empty string. */
@@ -219,13 +223,13 @@ export class DataService {
 
     /** Switch case for the different request methods. */
     if (type === 'GET') {
-      return this.http.get('/api/' + route, { headers: header });
+      return this.http.get(this.apiURL + route, { headers: header });
     } else if (type === 'POST') {
-      return this.http.post('/api/' + route, data, { headers: header });
+      return this.http.post(this.apiURL + route, data, { headers: header });
     } else if (type === 'PUT') {
-      return this.http.put('/api/' + route, data, { headers: header });
+      return this.http.put(this.apiURL + route, data, { headers: header });
     } else if (type === 'DELETE') {
-      return this.http.delete('/api/' + route, { headers: header });
+      return this.http.delete(this.apiURL + route, { headers: header });
     } else {
       console.log('DataService: Invalid request type: ' + type);
     }
