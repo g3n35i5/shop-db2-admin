@@ -35,21 +35,10 @@
       </mat-error>
     </mat-form-field>
 
-    <!-- Active -->
-    <mat-form-field class="full-width-input">
-      <mat-select
-        placeholder="Active"
-        formControlName="active"
-        [compareWith]="compareFn">
-        <mat-option [value]="true">Yes</mat-option>
-        <mat-option [value]="false">No</mat-option>
-      </mat-select>
-    </mat-form-field>
-
     <!-- revocable -->
     <mat-form-field class="full-width-input">
       <mat-select
-        placeholder="revocable"
+        placeholder="Revocable"
         formControlName="revocable"
         [compareWith]="compareFn">
         <mat-option [value]="true">Yes</mat-option>

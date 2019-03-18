@@ -88,7 +88,6 @@ export class EditproductComponent implements OnInit {
         Validators.minLength(2),
         Validators.maxLength(32)])],
       imagename: [this.editProduct.imagename],
-      active: [this.editProduct.active],
       revocable: [this.editProduct.revocable],
       countable: [this.editProduct.countable]
     });
