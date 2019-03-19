@@ -48,9 +48,6 @@ export class InterceptorComponent implements HttpInterceptor {
         /** Open a snackbar with the error message.*/
         } else {
           this.snackbar.openSnackBar(error.error.message);
-          if (error.status === 401 && error.statusText === 'UNAUTHORIZED') {
-            this.authService.logout();
-          }
         }
       })
     );
