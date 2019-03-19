@@ -7,7 +7,7 @@
 
 @include mat-core();
 .dark-theme {
-  $dark-primary: mat-palette($mat-pink, 700, 500, 900);
+  $dark-primary: mat-palette($mat-pink, 500, 700, 900);
   $dark-accent:  mat-palette($mat-blue-grey, A200, A100, A400);
   $dark-warn:    mat-palette($mat-deep-orange);
   $dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
@@ -18,7 +18,6 @@
 .mat-drawer-side {
   border: none !important;
 }
-
 
 body {
   margin: 0;
@@ -44,6 +43,10 @@ table {
 
 .center-icon {
   margin: 0 auto;
+}
+
+mat-toolbar {
+  z-index: 2;
 }
 
 @for $i from 1 through 5 {

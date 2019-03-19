@@ -72,7 +72,6 @@ export class UsersComponent implements OnInit {
 
   /** Process the loaded data and ends the loading state.  */
   processingData() {
-    console.log(this.users);
     if (this.users.length > 0) {
       for (const user of this.users) {
         user.rankname = this.ranks.find(x => x.id === user.rank_id).name;

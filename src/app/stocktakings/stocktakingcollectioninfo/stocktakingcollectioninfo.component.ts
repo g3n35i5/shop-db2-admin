@@ -25,7 +25,6 @@ export class StocktakingcollectioninfoComponent implements OnInit {
   ngOnInit() {
     //  Get a copy of the stocktakingcollection.
     this.stocktakingcollection = this.data.stocktakingcollection;
-    console.log(this.stocktakingcollection);
     this.loadData();
   }
 
