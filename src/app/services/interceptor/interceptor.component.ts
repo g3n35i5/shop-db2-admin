@@ -47,7 +47,11 @@ export class InterceptorComponent implements HttpInterceptor {
           this.router.navigate(['/offline']);
         /** Open a snackbar with the error message.*/
         } else {
-          this.snackbar.openSnackBar(error.error.message);
+          if (error.error.message !== 'undefined') {
+            this.snackbar.openSnackBar(error.error.message);
+          } else {
+            this.authService.logout();
+          }
         }
       })
     );
