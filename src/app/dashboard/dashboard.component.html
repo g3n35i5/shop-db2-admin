@@ -25,11 +25,11 @@
       <h1 class="mat-h1">Financial overview</h1>
     </mat-card-header>
     <mat-card-content class="chart">
-      <canvas
-        baseChart
-        [chartType]="'bar'"
-        [datasets]="chartData"
-        [options]="chartOptions">
+      <canvas baseChart
+              [datasets]="barChartData"
+              [labels]="barChartLabels"
+              [options]="chartOptions"
+              [chartType]="'bar'">
       </canvas>
     </mat-card-content>
   </mat-card>

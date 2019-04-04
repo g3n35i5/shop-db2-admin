@@ -27,7 +27,10 @@ export class DashboardComponent implements OnInit {
   private refunds;
   private payoffs;
   private financial_overview;
-  public chartData: any = [];
+
+  public barChartData: any[] = [];
+
+  public barChartLabels: string[] = ['Incomes', 'Expenses'];
 
   chartOptions = {
     type: 'bar',
@@ -128,16 +131,20 @@ export class DashboardComponent implements OnInit {
     this.tiles[4].number = this.replenishments.length;
     this.tiles[5].number = this.refunds.length;
     this.tiles[6].number = this.payoffs.length;
-    const expenses = this.financial_overview['expenses']['items'];
+
     const incomes = this.financial_overview['incomes']['items'];
+    const expenses = this.financial_overview['expenses']['items'];
 
-    for (const inc of incomes) {
-      this.chartData.push({data: [inc.amount / 100], label: inc.name, stack: '1'});
-    }
+    const incomes_keys = incomes.map(x => x['name']);
+    const expenses_keys = expenses.map(x => x['name']);
+    const keys = new Set(incomes_keys.concat(expenses_keys));
 
-    for (const ex of expenses) {
-      this.chartData.push({data: [ex.amount / 100], label: ex.name, stack: '2'});
-    }
+    keys.forEach(key => {
+      const income = incomes.find(i => i['name'] === key);
+      const expense = expenses.find(i => i['name'] === key);
+      this.barChartData.push({data: [income['amount'] / 100, expense['amount'] / 100], label: key});
+    });
+
     this.loading = false;
   }
 
