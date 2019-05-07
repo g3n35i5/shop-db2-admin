@@ -69,6 +69,10 @@ export class DataService {
     return this.postData('deposits', data);
   }
 
+  public createBatchDeposit(data: any) {
+    return this.postData('deposits/batch', data);
+  }
+
   public getProducts() {
     return this.getData('products');
   }

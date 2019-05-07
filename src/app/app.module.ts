@@ -23,6 +23,7 @@ import { UsersComponent } from './users/users.component';
 import { PurchasesComponent } from './purchases/purchases.component';
 import { DepositsComponent } from './deposits/deposits.component';
 import { CreateDepositComponent } from './deposits/create-deposit/create-deposit.component';
+import { CreateBatchDepositComponent } from './deposits/create-batch-deposit/create-batch-deposit.component';
 import { VerificationsComponent } from './verifications/verifications.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { LoadingComponent } from './loading/loading.component';
@@ -113,7 +114,8 @@ const appRoutes: Routes = [
     CreatePayoffComponent,
     StocktakingsComponent,
     CreateStocktakingCollectionComponent,
-    StocktakingcollectioninfoComponent
+    StocktakingcollectioninfoComponent,
+    CreateBatchDepositComponent
   ],
   imports: [
     BrowserModule,
@@ -150,6 +152,7 @@ const appRoutes: Routes = [
   entryComponents: [
     EditUserComponent,
     CreateDepositComponent,
+    CreateBatchDepositComponent,
     ProductinfoComponent,
     EditproductComponent,
     CreateTagComponent,

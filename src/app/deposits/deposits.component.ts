@@ -5,6 +5,7 @@ import { DataService } from '../services/data/data.service';
 import { forkJoin } from 'rxjs';
 import { CreateDepositComponent } from './create-deposit/create-deposit.component';
 import { CustomTimestamp } from '../filters';
+import { CreateBatchDepositComponent } from './create-batch-deposit/create-batch-deposit.component';
 
 @Component({
   selector: 'app-deposits',
@@ -42,6 +43,16 @@ export class DepositsComponent implements OnInit {
   createDeposit(): void {
     const dialogRef = this.dialog.open(CreateDepositComponent, {
       width: '400px'
+    });
+    dialogRef.afterClosed().subscribe(() => {
+      this.loadData();
+    });
+  }
+
+  /** Open a dialog for creating a deposit. */
+  createBatchDeposit(): void {
+    const dialogRef = this.dialog.open(CreateBatchDepositComponent, {
+      width: '600px'
     });
     dialogRef.afterClosed().subscribe(() => {
       this.loadData();

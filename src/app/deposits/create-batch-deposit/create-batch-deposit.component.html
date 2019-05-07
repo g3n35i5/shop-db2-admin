@@ -1,0 +1,60 @@
+<mat-spinner *ngIf="loading" style="margin:0 auto;"
+             mode="indeterminate"></mat-spinner>
+<div *ngIf="!loading" class="mat-dialog-content">
+
+  <h2 class="example-h2">Batch deposits</h2>
+  <p>Select all ranks to which the booking is to be made.</p>
+
+  <mat-checkbox
+    *ngFor="let rank of ranks" class="mr-1"
+    [(ngModel)]="rank.checked">{{ rank.name }}
+  </mat-checkbox>
+
+  <form [formGroup]="form">
+
+    <!-- Amount -->
+    <mat-form-field class="full-width-input">
+      <input matInput type="number" placeholder="Amount in cents"
+             formControlName="amount" required>
+      <mat-error *ngIf="isFieldInvalid('amount')">
+        Please enter the amount in cents.
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Comment Select-->
+    <mat-form-field class="full-width-input">
+      <mat-select placeholder="Comment" [formControl]="commentControl" required
+                  (selectionChange)="commentChanged($event)">
+        <mat-option *ngFor="let comment of comments" [value]="comment">
+          {{comment.text}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- Other comment -->
+    <mat-form-field class="full-width-input" *ngIf="showCommentField()">
+      <input matInput placeholder="Comment" minLength="minCommentLength"
+             maxlength="maxCommentLength" formControlName="comment" required>
+      <mat-hint align="end">
+        {{ commentLengthHint() }}
+      </mat-hint>
+      <mat-error *ngIf="isFieldInvalid('comment')">
+        Please enter a comment.
+      </mat-error>
+    </mat-form-field>
+
+    <button mat-button (click)="submitForm()" color="primary">Submit</button>
+    <button mat-button (click)="closeDialog()">Cancel</button>
+  </form>
+
+  <mat-list *ngIf="showAffectedUsers">
+    <mat-list-item *ngFor="let user of sortedUsers()">
+      <h4 mat-line>{{ getUsername(user) }}</h4>
+      <p mat-line> {{ getRankNameOfUser(user) }} </p>
+      <span class="fill-remaining-space"></span>
+      <mat-icon *ngIf="isUserAffected(user)">check</mat-icon>
+      <mat-icon *ngIf="!isUserAffected(user)">close</mat-icon>
+    </mat-list-item>
+  </mat-list>
+
+</div>

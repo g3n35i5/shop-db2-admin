@@ -4,6 +4,10 @@
     <mat-icon>add</mat-icon>
   </button>
 
+  <button mat-fab color="secondary" class="mr-1" (click)="createBatchDeposit()">
+    <mat-icon>group_add</mat-icon>
+  </button>
+
   <div *ngIf="showTable">
     <mat-form-field class="full-width-input">
       <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search in deposits">
