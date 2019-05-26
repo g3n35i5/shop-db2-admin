@@ -53,6 +53,10 @@ export class DataService {
     return this.getData('purchases');
   }
 
+  public createPurchase(data: any) {
+    return this.postData('purchases', data);
+  }
+
   public togglePurchaseRevoke(id: number, data: any) {
     return this.putData('purchases/' + id.toString(), data);
   }

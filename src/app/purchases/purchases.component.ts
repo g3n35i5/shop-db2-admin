@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material';
 import { DataService } from '../services/data/data.service';
 import { forkJoin } from 'rxjs';
 import { CustomTimestamp } from '../filters';
+import { CreatePurchaseComponent } from './create-purchase/create-purchase.component';
 
 @Component({
   selector: 'app-purchases',
@@ -37,6 +38,16 @@ export class PurchasesComponent implements OnInit {
   ngOnInit() {
     this.loading = true;
     this.loadData();
+  }
+
+  /** Open a dialog for creating a purchase. */
+  createPurchase(): void {
+    const dialogRef = this.dialog.open(CreatePurchaseComponent, {
+      width: '400px'
+    });
+    dialogRef.afterClosed().subscribe(() => {
+      this.loadData();
+    });
   }
 
   /** Revoke a purchase. */

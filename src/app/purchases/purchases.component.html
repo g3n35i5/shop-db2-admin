@@ -1,5 +1,10 @@
 <app-loading *ngIf="loading"></app-loading>
 <div *ngIf="!loading">
+
+  <button mat-fab color="primary" (click)="createPurchase()">
+    <mat-icon>add</mat-icon>
+  </button>
+
   <div *ngIf="showTable">
     <mat-form-field class="full-width-input">
       <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search in purchases">

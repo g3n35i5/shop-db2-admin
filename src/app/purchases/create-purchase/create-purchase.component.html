@@ -1,0 +1,49 @@
+<mat-spinner *ngIf="loading" style="margin:0 auto;"
+             mode="indeterminate"></mat-spinner>
+<div *ngIf="!loading" class="create-purchase-content">
+  <h1 mat-dialog-title>Create purchase</h1>
+  <form [formGroup]="form">
+
+    <!-- Amount -->
+    <mat-form-field class="full-width-input">
+      <input matInput type="number" placeholder="Amount"
+             formControlName="amount" required>
+      <mat-error *ngIf="isFieldInvalid('amount')">
+        Please enter the amount.
+      </mat-error>
+    </mat-form-field>
+
+    <!-- User -->
+    <mat-form-field class="full-width-input">
+      <input type="text" placeholder="User" matInput [formControl]="userControl"
+             [matAutocomplete]="autoUsers">
+      <mat-autocomplete #autoUsers="matAutocomplete" [displayWith]="displayFnUser"
+                        (optionSelected)="userChanged($event)">
+        <mat-option *ngFor="let user of filteredUsers | async" [value]="user">
+          {{ user.name }}
+        </mat-option>
+      </mat-autocomplete>
+      <button mat-button matSuffix mat-icon-button (click)="resetUser($event)">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <!-- Product -->
+    <mat-form-field class="full-width-input">
+      <input type="text" placeholder="Product" matInput [formControl]="productControl"
+             [matAutocomplete]="autoProducts">
+      <mat-autocomplete #autoProducts="matAutocomplete" [displayWith]="displayFnProduct"
+                        (optionSelected)="productChanged($event)">
+        <mat-option *ngFor="let product of filteredProducts | async" [value]="product">
+          {{ product.name }}
+        </mat-option>
+      </mat-autocomplete>
+      <button mat-button matSuffix mat-icon-button (click)="resetProduct($event)">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <button mat-button (click)="submitForm()" color="primary">Submit</button>
+    <button mat-button (click)="closeDialog()">Cancel</button>
+  </form>
+</div>

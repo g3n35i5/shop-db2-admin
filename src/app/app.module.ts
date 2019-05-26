@@ -52,6 +52,7 @@ import { OverlayContainer } from '@angular/cdk/overlay';
 import { StocktakingsComponent } from './stocktakings/stocktakings.component';
 import { CreateStocktakingCollectionComponent } from './stocktakings/createstocktakingcollection/createstocktakingcollection.component';
 import { StocktakingcollectioninfoComponent } from './stocktakings/stocktakingcollectioninfo/stocktakingcollectioninfo.component';
+import { CreatePurchaseComponent } from './purchases/create-purchase/create-purchase.component';
 
 /** Returns the token from the local storage. Required for the JWT tool. */
 export function tokenGetter() {
@@ -115,7 +116,8 @@ const appRoutes: Routes = [
     StocktakingsComponent,
     CreateStocktakingCollectionComponent,
     StocktakingcollectioninfoComponent,
-    CreateBatchDepositComponent
+    CreateBatchDepositComponent,
+    CreatePurchaseComponent
   ],
   imports: [
     BrowserModule,
@@ -153,6 +155,7 @@ const appRoutes: Routes = [
     EditUserComponent,
     CreateDepositComponent,
     CreateBatchDepositComponent,
+    CreatePurchaseComponent,
     ProductinfoComponent,
     EditproductComponent,
     CreateTagComponent,
