@@ -25,8 +25,8 @@ export class RefundsComponent implements OnInit {
   public numItems = 10;
   displayedColumns: string[] = ['id', 'firstname', 'lastname', 'amount',
     'comment', 'timestamp', 'revoke'];
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   constructor(
     public dialog: MatDialog,

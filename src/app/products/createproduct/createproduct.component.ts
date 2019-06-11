@@ -27,8 +27,8 @@ export class CreateProductComponent implements OnInit {
   selectedTags: string[] = [];
   allTags: string[] = [];
 
-  @ViewChild('tagInput') tagInput: ElementRef<HTMLInputElement>;
-  @ViewChild('auto') matAutocomplete: MatAutocomplete;
+  @ViewChild('tagInput', {static: true}) tagInput: ElementRef<HTMLInputElement>;
+  @ViewChild('auto', {static: true}) matAutocomplete: MatAutocomplete;
 
   constructor(
     private snackbar: SnackbarService,

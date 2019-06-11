@@ -55,8 +55,8 @@ export class EditproductComponent implements OnInit {
   tags: string[] = [];
   allTags: string[] = [];
 
-  @ViewChild('tagInput') tagInput: ElementRef<HTMLInputElement>;
-  @ViewChild('auto') matAutocomplete: MatAutocomplete;
+  @ViewChild('tagInput', {static: true}) tagInput: ElementRef<HTMLInputElement>;
+  @ViewChild('auto', {static: true}) matAutocomplete: MatAutocomplete;
 
   ngOnInit() {
     this.loading = true;

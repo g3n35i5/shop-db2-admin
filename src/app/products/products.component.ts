@@ -27,8 +27,8 @@ export class ProductsComponent implements OnInit {
   displayedColumns: string[] = ['id', 'name', 'price', 'pricehistory',
                                 'info', 'edit'];
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   constructor(
     public dialog: MatDialog,
