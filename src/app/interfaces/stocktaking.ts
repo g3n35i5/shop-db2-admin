@@ -10,4 +10,6 @@ export interface StocktakingCollection {
   revoked: boolean;
   stocktakings: Stocktaking[];
   timestamp: Date;
+  balance?: any;
+  is_first?: boolean;
 }

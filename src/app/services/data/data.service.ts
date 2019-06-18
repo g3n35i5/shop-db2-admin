@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
+import { map } from 'rxjs/operators'
 
 const removeEmpty = (obj) => {
   Object.keys(obj).forEach(key => {
@@ -200,8 +201,19 @@ export class DataService {
     return this.putData('stocktakingcollections/' + id.toString(), data);
   }
 
+  public getBalanceBetweenStocktakings(start_id: number, end_id: number) {
+    let url = 'stocktakingcollections/balance?';
+    url += 'start_id=' + start_id.toString();
+    url += '&end_id=' + end_id.toString();
+    return this.getData(url);
+  }
+
   public updateStocktaking(id: number, data: any) {
     return this.putData('stocktakings/' + id.toString(), data);
+  }
+
+  public getStocktakingTemplate() {
+    window.open(this.apiURL + 'stocktakingcollections/template', '_blank');
   }
 
   public upload(data) {

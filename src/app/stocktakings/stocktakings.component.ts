@@ -27,7 +27,7 @@ export class StocktakingsComponent implements OnInit {
   public dataSource;
   public itemsPerPage = [5, 10, 20, 50];
   public numItems = 10;
-  displayedColumns: string[] = ['id', 'timestamp', 'admin', 'info', 'revoke'];
+  displayedColumns: string[] = ['id', 'timestamp', 'admin', 'info', 'revoke', 'balance'];
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
@@ -54,8 +54,9 @@ export class StocktakingsComponent implements OnInit {
 
   getInfo(_collection: StocktakingCollection) {
     this.dataService.getStocktakingCollection(_collection.id).subscribe(collection => {
+      collection['stocktakingcollection']['balance'] = _collection.balance;
       const dialogRef = this.dialog.open(StocktakingcollectioninfoComponent, {
-        width: '500px',
+        width: '800px',
         data : collection
       });
 
@@ -109,10 +110,30 @@ export class StocktakingsComponent implements OnInit {
 
     this.loading = false;
     this.disableInteraction = false;
+    this.loadStocktakingBalances();
+  }
+
+  loadStocktakingBalances() {
+    const numStocktakings = this.stocktakingcollections.length;
+    if (numStocktakings < 2) {
+      return;
+    }
+    this.stocktakingcollections[0].is_first = true;
+    for (let index = numStocktakings - 1; index >= 1; index --) {
+      const end_id = this.stocktakingcollections[index]['id'];
+      const start_id = this.stocktakingcollections[index - 1]['id'];
+      this.dataService.getBalanceBetweenStocktakings(start_id, end_id).subscribe(res => {
+        this.stocktakingcollections[index].balance = res['balance'];
+      });
+    }
   }
 
   /** Filter the stocktakings depending on the current filter value.  */
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  getStocktakingTemplate() {
+    this.dataService.getStocktakingTemplate();
   }
 }

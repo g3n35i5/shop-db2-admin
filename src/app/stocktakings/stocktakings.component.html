@@ -4,6 +4,11 @@
     <button mat-fab class="addButton" color="primary" (click)="createStocktakingCollection()">
       <mat-icon>add</mat-icon>
     </button>
+    <button mat-fab class="addButton" color="secondary"
+            (click)="getStocktakingTemplate()"
+            matTooltip="Download the template for a new stocktaking">
+      <mat-icon>print</mat-icon>
+    </button>
 
     <mat-form-field class="full-width-input">
       <input matInput (keyup)="applyFilter($event.target.value)"
@@ -36,6 +41,24 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Admin</th>
         <td mat-cell *matCellDef="let stocktakingcollection">
           {{getUserNameByID(stocktakingcollection.admin_id)}}
+        </td>
+      </ng-container>
+
+      <!-- Balance Column -->
+      <ng-container matColumnDef="balance">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Balance</th>
+        <td mat-cell *matCellDef="let stocktakingcollection">
+          <span *ngIf="!stocktakingcollection.is_first">
+            <span *ngIf="stocktakingcollection.balance">
+            {{stocktakingcollection.balance['balance'] | customCurrency | currency: 'EUR'}}
+            </span>
+            <span *ngIf="!stocktakingcollection.balance">
+              <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+            </span>
+          </span>
+          <span *ngIf="stocktakingcollection.is_first">
+            - - -
+          </span>
         </td>
       </ng-container>
 
