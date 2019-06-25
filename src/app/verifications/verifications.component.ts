@@ -22,8 +22,8 @@ export class VerificationsComponent implements OnInit {
   public numItems = 50;
   displayedColumns: string[] = ['id', 'firstname', 'lastname', 'rank',
                                 'verify', 'delete'];
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
-  @ViewChild(MatSort, {static: true}) sort: MatSort;
+  @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
+  @ViewChild(MatSort, {static: false}) sort: MatSort;
 
   constructor(
     private snackbar: SnackbarService,

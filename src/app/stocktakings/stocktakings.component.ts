@@ -28,8 +28,8 @@ export class StocktakingsComponent implements OnInit {
   public itemsPerPage = [5, 10, 20, 50];
   public numItems = 10;
   displayedColumns: string[] = ['id', 'timestamp', 'admin', 'info', 'revoke', 'balance'];
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
-  @ViewChild(MatSort, {static: true}) sort: MatSort;
+  @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
+  @ViewChild(MatSort, {static: false}) sort: MatSort;
 
   constructor(
     public dialog: MatDialog,

@@ -27,8 +27,9 @@ export class PurchasesComponent implements OnInit {
   displayedColumns: string[] = ['id', 'firstname', 'lastname', 'productname',
                                 'amount', 'timestamp', 'productprice', 'price',
                                 'revoke'];
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
-  @ViewChild(MatSort, {static: true}) sort: MatSort;
+
+  @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
+  @ViewChild(MatSort, {static: false}) sort: MatSort;
 
   constructor(
     public dialog: MatDialog,
@@ -86,8 +87,10 @@ export class PurchasesComponent implements OnInit {
         purchase.timestamp = this.datePipe.transform(purchase.timestamp);
       }
       this.dataSource = new MatTableDataSource(this.purchases);
+
       setTimeout(() => this.dataSource.paginator = this.paginator);
       setTimeout(() => this.dataSource.sort = this.sort);
+
       this.showTable = true;
     } else {
       this.showTable = false;

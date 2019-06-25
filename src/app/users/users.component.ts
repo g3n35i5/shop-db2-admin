@@ -23,8 +23,8 @@ export class UsersComponent implements OnInit {
   public numItems = 10;
   displayedColumns: string[] = ['id', 'firstname', 'lastname', 'isadmin',
                                 'rank', 'credit', 'edit'];
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
-  @ViewChild(MatSort, {static: true}) sort: MatSort;
+  @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
+  @ViewChild(MatSort, {static: false}) sort: MatSort;
 
   constructor(
     public dialog: MatDialog,
