@@ -53,6 +53,7 @@ import { StocktakingsComponent } from './stocktakings/stocktakings.component';
 import { CreateStocktakingCollectionComponent } from './stocktakings/createstocktakingcollection/createstocktakingcollection.component';
 import { StocktakingcollectioninfoComponent } from './stocktakings/stocktakingcollectioninfo/stocktakingcollectioninfo.component';
 import { CreatePurchaseComponent } from './purchases/create-purchase/create-purchase.component';
+import { EditreplenishmentComponent } from './replenishments/editreplenishment/editreplenishment.component';
 
 /** Returns the token from the local storage. Required for the JWT tool. */
 export function tokenGetter() {
@@ -117,7 +118,8 @@ const appRoutes: Routes = [
     CreateStocktakingCollectionComponent,
     StocktakingcollectioninfoComponent,
     CreateBatchDepositComponent,
-    CreatePurchaseComponent
+    CreatePurchaseComponent,
+    EditreplenishmentComponent
   ],
   imports: [
     BrowserModule,
@@ -163,6 +165,7 @@ const appRoutes: Routes = [
     CreateProductComponent,
     CreateReplenishmentComponent,
     ReplenishmentcollectioninfoComponent,
+    EditreplenishmentComponent,
     CreateRefundComponent,
     CreatePayoffComponent,
     CreateStocktakingCollectionComponent,

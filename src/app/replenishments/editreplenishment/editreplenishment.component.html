@@ -1,0 +1,46 @@
+<mat-spinner *ngIf="loading"style="margin:0 auto;" mode="indeterminate"></mat-spinner>
+<div *ngIf="!loading">
+
+  <form [formGroup]="form" (ngSubmit)="submitForm()">
+
+    <!-- Comment -->
+    <mat-form-field class="full-width-input">
+      <input matInput placeholder="Comment" formControlName="comment" required>
+      <mat-error *ngIf="isFieldInvalid('comment')">
+        Please enter the comment of the replenishmentcollection.
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Timestamp -->
+    <mat-form-field class="full-width-input">
+      <input matInput placeholder="Timestamp" formControlName="timestamp">
+      <mat-error *ngIf="isFieldInvalid('timestamp')">
+        Please enter the timestamp of the replenishmentcollection.
+      </mat-error>
+    </mat-form-field>
+
+    <div fxLayout="row" fxLayoutAlign="space-around" fxLayoutGap="2rem">
+      <mat-form-field fxFlex>
+        <input
+          matInput [max]="maxDate"
+          [matDatepicker]="datepicker" placeholder="Date"
+          formControlName="date">
+        <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+        <mat-datepicker #datepicker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field fxFlex>
+        <input
+          matInput
+          placeholder="Time"
+          [ngxTimepicker]="timepicker"
+          formControlName="time"
+          [format]="24" readonly>
+        <ngx-material-timepicker #timepicker></ngx-material-timepicker>
+      </mat-form-field>
+    </div>
+
+    <button mat-button color="primary">Submit</button>
+    <button mat-button (click)="closeDialog(false)">Cancel</button>
+  </form>
+</div>

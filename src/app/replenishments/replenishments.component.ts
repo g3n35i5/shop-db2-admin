@@ -8,6 +8,8 @@ import {CreateReplenishmentComponent} from './createreplenishment/createreplenis
 import {ReplenishmentCollection} from '../interfaces/replenishmentcollection';
 import {ReplenishmentcollectioninfoComponent} from './replenishmentcollectioninfo/replenishmentcollectioninfo.component';
 import {ProductinfoComponent} from '../products/productinfo/productinfo.component';
+import {EditproductComponent} from '../products/editproduct/editproduct.component';
+import {EditreplenishmentComponent} from './editreplenishment/editreplenishment.component';
 
 @Component({
   selector: 'app-replenishments',
@@ -27,7 +29,7 @@ export class ReplenishmentsComponent implements OnInit {
   public dataSource;
   public itemsPerPage = [5, 10, 20, 50];
   public numItems = 10;
-  displayedColumns: string[] = ['id', 'timestamp', 'admin', 'comment', 'price', 'info', 'revoke'];
+  displayedColumns: string[] = ['id', 'timestamp', 'admin', 'comment', 'price', 'info', 'edit', 'revoke'];
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: false}) sort: MatSort;
 
@@ -60,6 +62,22 @@ export class ReplenishmentsComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(() => {
       this.loadData();
+    });
+  }
+
+  /** Open a dialog for editing the product */
+  editReplenishmentcollection(collection: ReplenishmentCollection): void {
+    this.dataService.getReplenishmentCollection(collection.id).subscribe(full_collection => {
+      const dialogRef = this.dialog.open(EditreplenishmentComponent, {
+        width: '500px',
+        data : full_collection
+      });
+
+      dialogRef.afterClosed().subscribe(result => {
+        if (result) {
+          this.loadData();
+        }
+      });
     });
   }
 

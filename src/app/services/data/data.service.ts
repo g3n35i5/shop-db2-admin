@@ -157,6 +157,10 @@ export class DataService {
     return this.putData('replenishmentcollections/' + id.toString(), data);
   }
 
+  public updateReplenishmentCollection(id: number, data: any) {
+    return this.putData('replenishmentcollections/' + id.toString(), data);
+  }
+
   public toggleReplenishmentRevoke(id: number, data: any) {
     return this.putData('replenishments/' + id.toString(), data);
   }
