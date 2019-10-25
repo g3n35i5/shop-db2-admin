@@ -59,8 +59,8 @@ export class VerificationsComponent implements OnInit {
     const users = this.dataService.getPendingVerifications();
     const ranks = this.dataService.getRanks();
     forkJoin([users, ranks]).subscribe(results => {
-      this.users = results[0]['pending_validations'];
-      this.ranks = results[1]['ranks'];
+      this.users = results[0];
+      this.ranks = results[1];
       this.processingData();
     });
   }

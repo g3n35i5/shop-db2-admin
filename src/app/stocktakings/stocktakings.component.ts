@@ -91,8 +91,8 @@ export class StocktakingsComponent implements OnInit {
     const stocktakings = this.dataService.getStocktakingCollections();
     const users = this.dataService.getUsers();
     forkJoin([stocktakings, users]).subscribe(results => {
-      this.stocktakingcollections = results[0]['stocktakingcollections'];
-      this.users = results[1]['users'];
+      this.stocktakingcollections = <StocktakingCollection[]>results[0];
+      this.users = results[1];
       this.processingData();
     });
   }

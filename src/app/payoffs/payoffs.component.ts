@@ -63,8 +63,8 @@ export class PayoffsComponent implements OnInit {
     const users = this.dataService.getUsers();
     const payoffs = this.dataService.getPayoffs();
     forkJoin([users, payoffs]).subscribe(results => {
-      this.users = results[0]['users'];
-      this.payoffs = results[1]['payoffs'];
+      this.users = results[0];
+      this.payoffs = results[1];
       this.processingData();
     });
   }

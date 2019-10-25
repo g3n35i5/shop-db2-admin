@@ -70,7 +70,7 @@ export class ProducttagsComponent implements OnInit {
   loadData() {
     const producttags = this.dataService.getProducttags();
     forkJoin([producttags]).subscribe(results => {
-      this.producttags = results[0]['tags'];
+      this.producttags = results[0];
       this.processingData();
     });
   }

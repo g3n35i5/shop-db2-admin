@@ -75,8 +75,8 @@ export class DepositsComponent implements OnInit {
     const users = this.dataService.getUsers();
     const deposits = this.dataService.getDeposits();
     forkJoin([users, deposits]).subscribe(results => {
-      this.users = results[0]['users'];
-      this.deposits = results[1]['deposits'];
+      this.users = results[0];
+      this.deposits = results[1];
       this.processingData();
     });
   }

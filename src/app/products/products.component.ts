@@ -44,7 +44,7 @@ export class ProductsComponent implements OnInit {
     this.loading = true;
     const products = this.dataService.getProducts();
     forkJoin([products]).subscribe(results => {
-      this.products = results[0]['products'];
+      this.products = results[0];
       this.processingData();
     });
   }

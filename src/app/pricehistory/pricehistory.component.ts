@@ -154,8 +154,8 @@ export class PricehistoryComponent implements OnInit {
     const product = this.dataService.getProduct(+id);
     const pricehistory = this.dataService.getProductPricehistory(+id);
     forkJoin([product, pricehistory]).subscribe(results => {
-      this.product = results[0]['product'];
-      this.pricehistory = results[1]['pricehistory'];
+      this.product = results[0];
+      this.pricehistory = results[1];
       this.processingData();
     });
   }

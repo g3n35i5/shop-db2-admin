@@ -160,14 +160,14 @@ export class DashboardComponent implements OnInit {
     const financial_overview = this.dataService.getFinancialOverview();
     forkJoin([users, deposits, purchases, products, replenishments, refunds, payoffs, financial_overview])
       .subscribe(results => {
-      this.users = results[0]['users'];
-      this.deposits = results[1]['deposits'];
-      this.purchases = results[2]['purchases'];
-      this.products = results[3]['products'];
-      this.replenishments = results[4]['replenishmentcollections'];
-      this.refunds = results[5]['refunds'];
-      this.payoffs = results[6]['payoffs'];
-      this.financial_overview = results[7]['financial_overview'];
+      this.users = results[0];
+      this.deposits = results[1];
+      this.purchases = results[2];
+      this.products = results[3];
+      this.replenishments = results[4];
+      this.refunds = results[5];
+      this.payoffs = results[6];
+      this.financial_overview = results[7];
       this.processingData();
     });
   }

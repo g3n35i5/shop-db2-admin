@@ -68,9 +68,9 @@ export class PurchasesComponent implements OnInit {
     const purchases = this.dataService.getPurchases();
     const products = this.dataService.getProducts();
     forkJoin([users, purchases, products]).subscribe(results => {
-      this.users = results[0]['users'];
-      this.purchases = results[1]['purchases'];
-      this.products = results[2]['products'];
+      this.users = results[0];
+      this.purchases = results[1];
+      this.products = results[2];
       this.processingData();
     });
   }

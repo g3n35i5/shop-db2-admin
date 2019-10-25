@@ -68,7 +68,7 @@ export class CreateProductComponent implements OnInit {
   loadData(): void {
     const tags = this.dataService.getProducttags();
     forkJoin([tags]).subscribe(results => {
-      this.tags = results[0]['tags'];
+      this.tags = results[0];
       this.processingData();
     });
   }

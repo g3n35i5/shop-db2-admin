@@ -64,8 +64,8 @@ export class RefundsComponent implements OnInit {
     const users = this.dataService.getUsers();
     const refunds = this.dataService.getRefunds();
     forkJoin([users, refunds]).subscribe(results => {
-      this.users = results[0]['users'];
-      this.refunds = results[1]['refunds'];
+      this.users = results[0];
+      this.refunds = results[1];
       this.processingData();
     });
   }

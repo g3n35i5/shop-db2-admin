@@ -106,8 +106,8 @@ export class ReplenishmentsComponent implements OnInit {
     const replenishments = this.dataService.getReplenishmentCollections();
     const users = this.dataService.getUsers();
     forkJoin([replenishments, users]).subscribe(results => {
-      this.replenishments = results[0]['replenishmentcollections'];
-      this.users = results[1]['users'];
+      this.replenishments = results[0];
+      this.users = results[1];
       this.processingData();
     });
   }
