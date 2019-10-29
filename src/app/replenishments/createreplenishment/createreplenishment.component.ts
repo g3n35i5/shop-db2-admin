@@ -61,7 +61,7 @@ export class CreateReplenishmentComponent implements OnInit {
   loadData() {
     const products = this.dataService.getProducts();
     forkJoin([products]).subscribe(result => {
-      this.products = result[0]['products'];
+      this.products = <Product[]>result[0];
       this.processingData();
     });
   }

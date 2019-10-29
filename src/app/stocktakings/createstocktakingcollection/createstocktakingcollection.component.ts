@@ -53,6 +53,7 @@ export class CreateStocktakingCollectionComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) private data: any,
     public dialogRef: MatDialogRef<CreateStocktakingCollectionComponent>
   ) {
+    dialogRef.disableClose = true;
     this.form = this.fb.group({
       counts: this.fb.array([]),
       time: ['', [Validators.required]],
@@ -77,7 +78,7 @@ export class CreateStocktakingCollectionComponent implements OnInit {
   loadData() {
     const products = this.dataService.getProducts();
     forkJoin([products]).subscribe(result => {
-      this.products = result[0]['products'];
+      this.products = <Product[]>result[0];
       this.processingData();
     });
   }

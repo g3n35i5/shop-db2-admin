@@ -3,7 +3,8 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {DataService} from '../../services/data/data.service';
 import {forkJoin} from 'rxjs';
 import {Product} from '../../interfaces/product';
-import {StocktakingCollection} from '../../interfaces/stocktaking';
+import {Stocktaking, StocktakingCollection} from '../../interfaces/stocktaking';
+import {Replenishment} from '../../interfaces/replenishment';
 
 @Component({
   selector: 'app-stocktakingcollectioninfo',
@@ -32,9 +33,15 @@ export class StocktakingcollectioninfoComponent implements OnInit {
     this.loading = true;
     const products = this.dataService.getProducts();
     forkJoin([products]).subscribe(result => {
-      this.products = result[0]['products'];
+      this.products = <Product[]>result[0];
       this.processingData();
     });
+  }
+
+  imagePath(stocktaking: Stocktaking): string {
+    const product: Product = this.getProductByID(stocktaking.product_id);
+    const path = '/api/images/';
+    return product.imagename !== null ? path + product.imagename : path;
   }
 
   /**

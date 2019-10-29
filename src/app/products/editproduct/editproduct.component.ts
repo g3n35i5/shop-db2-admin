@@ -62,7 +62,7 @@ export class EditproductComponent implements OnInit {
     this.loading = true;
     this.product = this.data.product;
     this.dataService.getProducttags().subscribe(res => {
-      const tags = res['tags'];
+      const tags = <any[]>res;
       for (const tag of tags) {
         if (this.product.tags.includes(tag['id'])) {
           this.tags.push(tag['name']);

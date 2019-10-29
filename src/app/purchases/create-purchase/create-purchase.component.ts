@@ -50,8 +50,8 @@ export class CreatePurchaseComponent implements OnInit {
     const users = this.dataService.getUsers();
     const products = this.dataService.getProducts();
     forkJoin([users, products]).subscribe(result => {
-      this.users = this.convertUsers(result[0]['users']);
-      this.products = result[1]['products'];
+      this.users = this.convertUsers(result[0]);
+      this.products = <any[]>result[1];
       this.processingData();
     });
   }

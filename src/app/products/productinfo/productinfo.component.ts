@@ -31,7 +31,7 @@ export class ProductinfoComponent implements OnInit {
     this.loading = true;
     const tags = this.dataService.getProducttags();
     forkJoin([tags]).subscribe(result => {
-      this.tags = result[0]['tags'];
+      this.tags = result[0];
       this.processingData();
     });
   }

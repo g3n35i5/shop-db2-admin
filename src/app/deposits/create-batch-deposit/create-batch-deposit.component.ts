@@ -84,8 +84,8 @@ export class CreateBatchDepositComponent implements OnInit {
     const users = this.dataService.getUsers();
     const ranks = this.dataService.getRanks();
     forkJoin([users, ranks]).subscribe(result => {
-      this.users = result[0]['users'];
-      this.ranks = result[1]['ranks'];
+      this.users = <User[]>result[0];
+      this.ranks = <Rank[]>result[1];
       this.processingData();
     });
   }

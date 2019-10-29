@@ -61,8 +61,8 @@ export class ReplenishmentcollectioninfoComponent implements OnInit {
     const collection = this.dataService.getReplenishmentCollection(this.rID);
     const products = this.dataService.getProducts();
     forkJoin([products, collection]).subscribe(result => {
-      this.products = result[0]['products'];
-      this.collection = result[1]['replenishmentcollection'];
+      this.products = result[0];
+      this.collection = <any>result[1];
       this.processingData();
     });
   }

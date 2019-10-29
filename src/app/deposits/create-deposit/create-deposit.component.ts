@@ -67,7 +67,7 @@ export class CreateDepositComponent implements OnInit {
   loadData() {
     const users = this.dataService.getUsers();
     forkJoin([users]).subscribe(result => {
-      this.users = this.convertUsers(result[0]['users']);
+      this.users = this.convertUsers(result[0]);
       this.processingData();
     });
   }
