@@ -60,7 +60,7 @@ export class EditproductComponent implements OnInit {
 
   ngOnInit() {
     this.loading = true;
-    this.product = this.data.product;
+    this.product = this.data;
     this.dataService.getProducttags().subscribe(res => {
       const tags = <any[]>res;
       for (const tag of tags) {

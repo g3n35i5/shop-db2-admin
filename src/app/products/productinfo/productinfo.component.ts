@@ -23,7 +23,7 @@ export class ProductinfoComponent implements OnInit {
 
   ngOnInit() {
     //  Get a copy of the product.
-    this.product = this.data.product;
+    this.product = this.data;
     this.loadData();
   }
 
