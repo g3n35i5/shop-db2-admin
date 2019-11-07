@@ -86,7 +86,6 @@ export class AppComponent implements OnInit {
       icon: 'cloud_off',
       title: 'Maintenance',
       link: 'maintenance'
-    },
     }
   ];
 
