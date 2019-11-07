@@ -1,0 +1,17 @@
+<app-loading *ngIf="loading"></app-loading>
+<div *ngIf="!loading">
+  <div class="center-card" style="max-width: 800px">
+    <h1 class="mat-h1">Toggle the maintenance mode</h1>
+    Please note: If you set shop-db to maintenance mode, normal users will
+    no longer be able to access the system, but only those with credentials
+    and administrator status.
+    <mat-divider></mat-divider>
+    <h2 class="mat-h2"  [style.color]="getMessageColor()">
+      {{ getMessage() }}
+    </h2>
+
+    <button mat-raised-button color="primary" (click)="toggleMaintenanceMode()">
+      Toggle
+    </button>
+  </div>
+</div>

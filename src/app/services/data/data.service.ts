@@ -220,6 +220,17 @@ export class DataService {
     window.open(this.apiURL + 'stocktakingcollections/template', '_blank');
   }
 
+  public getMaintenanceMode() {
+    return this.getData('maintenance');
+  }
+
+  public setMaintenanceMode(mode: boolean) {
+    const data = {
+      state: mode
+    };
+    return this.postData('maintenance', data);
+  }
+
   public upload(data) {
     return this.postData('upload', data);
   }

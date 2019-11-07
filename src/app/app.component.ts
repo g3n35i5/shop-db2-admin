@@ -81,6 +81,12 @@ export class AppComponent implements OnInit {
       icon: 'verified_user',
       title: 'Verifications',
       link: 'verifications'
+    },
+    {
+      icon: 'cloud_off',
+      title: 'Maintenance',
+      link: 'maintenance'
+    },
     }
   ];
 

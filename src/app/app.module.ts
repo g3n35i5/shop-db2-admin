@@ -54,6 +54,7 @@ import { CreateStocktakingCollectionComponent } from './stocktakings/createstock
 import { StocktakingcollectioninfoComponent } from './stocktakings/stocktakingcollectioninfo/stocktakingcollectioninfo.component';
 import { CreatePurchaseComponent } from './purchases/create-purchase/create-purchase.component';
 import { EditreplenishmentComponent } from './replenishments/editreplenishment/editreplenishment.component';
+import { MaintenanceComponent } from './maintenance/maintenance.component';
 
 /** Returns the token from the local storage. Required for the JWT tool. */
 export function tokenGetter() {
@@ -76,6 +77,7 @@ const appRoutes: Routes = [
   { path: 'payoffs', component: PayoffsComponent, canActivate: [AuthGuard] },
   { path: 'stocktakings', component: StocktakingsComponent, canActivate: [AuthGuard] },
   { path: 'verifications', component: VerificationsComponent, canActivate: [AuthGuard] },
+  { path: 'maintenance', component: MaintenanceComponent, canActivate: [AuthGuard] },
   { path: '',
     redirectTo: '/dashboard',
     pathMatch: 'full'
@@ -119,7 +121,8 @@ const appRoutes: Routes = [
     StocktakingcollectioninfoComponent,
     CreateBatchDepositComponent,
     CreatePurchaseComponent,
-    EditreplenishmentComponent
+    EditreplenishmentComponent,
+    MaintenanceComponent
   ],
   imports: [
     BrowserModule,
