@@ -123,7 +123,7 @@ export class StocktakingsComponent implements OnInit {
       const end_id = this.stocktakingcollections[index]['id'];
       const start_id = this.stocktakingcollections[index - 1]['id'];
       this.dataService.getBalanceBetweenStocktakings(start_id, end_id).subscribe(res => {
-        this.stocktakingcollections[index].balance = res['balance'];
+        this.stocktakingcollections[index].balance = res;
       });
     }
   }
