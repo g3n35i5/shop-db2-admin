@@ -3,17 +3,34 @@
   <h1 mat-dialog-title>
     Stocktaking
     <span class="mat-small">
-      {{ stocktakingcollection.timestamp | customTimestamp }}
+      {{ stocktakingcollection['timestamp'] | customTimestamp }}
     </span>
   </h1>
   <div mat-dialog-content>
-    <mat-list>
-      <mat-list-item *ngFor="let stocktaking of stocktakingcollection.stocktakings">
-        <h3 matLine>{{getProductByID(stocktaking.product_id).name}}</h3>
-        <p matLine>{{getProductByID(stocktaking.product_id).price | customCurrency | currency: 'EUR'}}</p>
-        <span class="fill-remaining-space"></span>
-        {{stocktaking.count}}
-      </mat-list-item>
-    </mat-list>
+    <table>
+      <thead>
+      <tr>
+        <th>Product</th>
+        <th>Count</th>
+        <th>Difference</th>
+        <th>Balance</th>
+      </tr>
+      </thead>
+      <tr *ngFor="let stocktaking of stocktakingcollection.stocktakings">
+        <td>
+          <img class="product-image mr-1" [src]="imagePath(stocktaking)">
+          <span>{{getProductByID(stocktaking.product_id).name}}</span>
+        </td>
+        <td>
+          {{stocktaking.count}}
+        </td>
+        <td>
+          {{stocktakingcollection.balance['products'][stocktaking.product_id]['difference']}}
+        </td>
+        <td>
+          {{stocktakingcollection.balance['products'][stocktaking.product_id]['balance'] | customCurrency | currency: 'EUR'}}
+        </td>
+      </tr>
+    </table>
   </div>
 </div>

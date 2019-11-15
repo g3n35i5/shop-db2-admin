@@ -21,16 +21,15 @@ export class StocktakingcollectioninfoComponent implements OnInit {
 
   public stocktakingcollection: StocktakingCollection;
   public products: Product[];
-  public loading: boolean;
+  public loading = true;
 
   ngOnInit() {
     //  Get a copy of the stocktakingcollection.
-    this.stocktakingcollection = this.data.stocktakingcollection;
+    this.stocktakingcollection = this.data;
     this.loadData();
   }
 
   loadData() {
-    this.loading = true;
     const products = this.dataService.getProducts();
     forkJoin([products]).subscribe(result => {
       this.products = <Product[]>result[0];
