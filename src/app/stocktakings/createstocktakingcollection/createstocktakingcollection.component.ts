@@ -92,7 +92,7 @@ export class CreateStocktakingCollectionComponent implements OnInit {
       ctrl.push(this.fb.group({
         product_id: product.id,
         count: [null, [Validators.required, Validators.min(0)]],
-        set_inactive: [false, [Validators.required]]
+        keep_active: [false, [Validators.required]]
       }));
     });
     this.loading = false;
