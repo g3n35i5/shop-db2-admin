@@ -114,16 +114,17 @@ export class StocktakingsComponent implements OnInit {
   }
 
   loadStocktakingBalances() {
-    const numStocktakings = this.stocktakingcollections.length;
+    const stocktakings = this.stocktakingcollections.filter(collection => !collection.revoked);
+    const numStocktakings = stocktakings.length;
     if (numStocktakings < 2) {
       return;
     }
-    this.stocktakingcollections[0].is_first = true;
+    stocktakings[0].is_first = true;
     for (let index = numStocktakings - 1; index >= 1; index --) {
-      const end_id = this.stocktakingcollections[index]['id'];
-      const start_id = this.stocktakingcollections[index - 1]['id'];
+      const end_id = stocktakings[index]['id'];
+      const start_id = stocktakings[index - 1]['id'];t gu
       this.dataService.getBalanceBetweenStocktakings(start_id, end_id).subscribe(res => {
-        this.stocktakingcollections[index].balance = res;
+        this.stocktakingcollections.find(item => item.id === end_id).balance = res;
       });
     }
   }

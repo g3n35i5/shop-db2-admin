@@ -54,7 +54,7 @@
             <span *ngIf="stocktakingcollection.balance">
             {{stocktakingcollection.balance['balance'] | customCurrency | currency: 'EUR'}}
             </span>
-            <span *ngIf="!stocktakingcollection.balance">
+            <span *ngIf="!stocktakingcollection.revoked  && !stocktakingcollection.balance">
               <mat-progress-bar mode="indeterminate"></mat-progress-bar>
             </span>
           </span>
