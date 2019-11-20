@@ -122,7 +122,7 @@ export class StocktakingsComponent implements OnInit {
     stocktakings[0].is_first = true;
     for (let index = numStocktakings - 1; index >= 1; index --) {
       const end_id = stocktakings[index]['id'];
-      const start_id = stocktakings[index - 1]['id'];t gu
+      const start_id = stocktakings[index - 1]['id'];
       this.dataService.getBalanceBetweenStocktakings(start_id, end_id).subscribe(res => {
         this.stocktakingcollections.find(item => item.id === end_id).balance = res;
       });
