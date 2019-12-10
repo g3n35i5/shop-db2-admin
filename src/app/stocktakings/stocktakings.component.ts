@@ -56,7 +56,7 @@ export class StocktakingsComponent implements OnInit {
     this.dataService.getStocktakingCollection(_collection.id).subscribe(collection => {
       collection['balance'] = _collection.balance;
       const dialogRef = this.dialog.open(StocktakingcollectioninfoComponent, {
-        width: '800px',
+        width: '1200px',
         data : collection
       });
 
