@@ -1,5 +1,9 @@
 # ShopDbAdmin
 
+# Deprecated
+Please note that this project is an old version of the administration interface for shop-db2 and is no longer under development.
+The current version is [shop-db2-react-admin](https://github.com/g3n35i5/shop-db2-react-admin).
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.1.5.
 
 ## Development server
