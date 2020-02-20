@@ -68,11 +68,6 @@ export class AppComponent implements OnInit {
       link: 'refunds'
     },
     {
-      icon: 'euro_symbol',
-      title: 'Payoffs',
-      link: 'payoffs'
-    },
-    {
       icon: 'format_list_numbered',
       title: 'Stocktakings',
       link: 'stocktakings'

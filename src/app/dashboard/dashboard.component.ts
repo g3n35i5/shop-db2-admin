@@ -25,7 +25,6 @@ export class DashboardComponent implements OnInit {
   private products;
   private replenishments;
   private refunds;
-  private payoffs;
   private financial_overview;
 
   public barChartData: any[] = [];
@@ -109,13 +108,6 @@ export class DashboardComponent implements OnInit {
       number: null,
       color: '#E91E63',
       link: '/refunds'
-    },
-    {
-      title: 'Payoffs',
-      icon: 'euro_symbol',
-      number: null,
-      color: '#E91E63',
-      link: '/payoffs'
     }
   ];
 
@@ -130,7 +122,6 @@ export class DashboardComponent implements OnInit {
     this.tiles[3].number = this.deposits.length;
     this.tiles[4].number = this.replenishments.length;
     this.tiles[5].number = this.refunds.length;
-    this.tiles[6].number = this.payoffs.length;
 
     const incomes = this.financial_overview['incomes']['items'];
     const expenses = this.financial_overview['expenses']['items'];
@@ -156,9 +147,8 @@ export class DashboardComponent implements OnInit {
     const products = this.dataService.getProducts();
     const replenishments = this.dataService.getReplenishmentCollections();
     const refunds = this.dataService.getRefunds();
-    const payoffs = this.dataService.getPayoffs();
     const financial_overview = this.dataService.getFinancialOverview();
-    forkJoin([users, deposits, purchases, products, replenishments, refunds, payoffs, financial_overview])
+    forkJoin([users, deposits, purchases, products, replenishments, refunds, financial_overview])
       .subscribe(results => {
       this.users = results[0];
       this.deposits = results[1];
@@ -166,8 +156,7 @@ export class DashboardComponent implements OnInit {
       this.products = results[3];
       this.replenishments = results[4];
       this.refunds = results[5];
-      this.payoffs = results[6];
-      this.financial_overview = results[7];
+      this.financial_overview = results[6];
       this.processingData();
     });
   }

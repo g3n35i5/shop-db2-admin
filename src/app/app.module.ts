@@ -46,8 +46,6 @@ import { CreateReplenishmentComponent } from './replenishments/createreplenishme
 import { ReplenishmentcollectioninfoComponent } from './replenishments/replenishmentcollectioninfo/replenishmentcollectioninfo.component';
 import { RefundsComponent } from './refunds/refunds.component';
 import { CreateRefundComponent } from './refunds/create-refund/create-refund.component';
-import { PayoffsComponent } from './payoffs/payoffs.component';
-import { CreatePayoffComponent } from './payoffs/create-payoff/create-payoff.component';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { StocktakingsComponent } from './stocktakings/stocktakings.component';
 import { CreateStocktakingCollectionComponent } from './stocktakings/createstocktakingcollection/createstocktakingcollection.component';
@@ -74,7 +72,6 @@ const appRoutes: Routes = [
   { path: 'purchases', component: PurchasesComponent, canActivate: [AuthGuard] },
   { path: 'deposits', component: DepositsComponent, canActivate: [AuthGuard] },
   { path: 'refunds', component: RefundsComponent, canActivate: [AuthGuard] },
-  { path: 'payoffs', component: PayoffsComponent, canActivate: [AuthGuard] },
   { path: 'stocktakings', component: StocktakingsComponent, canActivate: [AuthGuard] },
   { path: 'verifications', component: VerificationsComponent, canActivate: [AuthGuard] },
   { path: 'maintenance', component: MaintenanceComponent, canActivate: [AuthGuard] },
@@ -114,8 +111,6 @@ const appRoutes: Routes = [
     ReplenishmentcollectioninfoComponent,
     RefundsComponent,
     CreateRefundComponent,
-    PayoffsComponent,
-    CreatePayoffComponent,
     StocktakingsComponent,
     CreateStocktakingCollectionComponent,
     StocktakingcollectioninfoComponent,
@@ -170,7 +165,6 @@ const appRoutes: Routes = [
     ReplenishmentcollectioninfoComponent,
     EditreplenishmentComponent,
     CreateRefundComponent,
-    CreatePayoffComponent,
     CreateStocktakingCollectionComponent,
     StocktakingcollectioninfoComponent
   ]

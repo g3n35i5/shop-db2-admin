@@ -177,18 +177,6 @@ export class DataService {
     return this.postData('refunds', data);
   }
 
-  public getPayoffs() {
-    return this.getData('payoffs');
-  }
-
-  public togglePayoffRevoke(id: number, data: any) {
-    return this.putData('payoffs/' + id.toString(), data);
-  }
-
-  public createPayoff(data: any) {
-    return this.postData('payoffs', data);
-  }
-
   public getStocktakingCollections() {
     return this.getData('stocktakingcollections');
   }
